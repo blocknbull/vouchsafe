@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antibody</title>
+<meta name="description" content="Scam reports on BNB Chain, one vote per Agent ID. Check any contract before you sign.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 30V17M16 17 7 6M16 17l9-11' stroke='%2322c55e' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='7' cy='6' r='3.4' fill='%2322c55e'/%3E%3Ccircle cx='25' cy='6' r='3.4' fill='%2322c55e'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f6f7f4; --panel:#ffffff; --ink:#14171a; --ink-2:#4a525a; --ink-3:#7b838b; --line:#e3e6e0; --soft:#eef0eb;
+  --accent:#15803d; --accent-ink:#ffffff; --warn-bg:#fff7e6; --warn-ink:#8a5a00;
+  --v-safe:#16a34a; --v-honeypot:#d97706; --v-rug:#dc2626; --v-drainer:#9333ea; --v-phishing:#2563eb;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:ui-sans-serif,-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c0f0d; --panel:#131815; --ink:#e8ece9; --ink-2:#aab3ad; --ink-3:#77817a; --line:#232a25; --soft:#1a201c;
+  --accent:#22c55e; --accent-ink:#06210f; --warn-bg:#2a2210; --warn-ink:#f2c46b;
+  --v-safe:#22c55e; --v-honeypot:#f59e0b; --v-rug:#f05252; --v-drainer:#b57cf6; --v-phishing:#5b8def;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0c0f0d; --panel:#131815; --ink:#e8ece9; --ink-2:#aab3ad; --ink-3:#77817a; --line:#232a25; --soft:#1a201c;
+  --accent:#22c55e; --accent-ink:#06210f; --warn-bg:#2a2210; --warn-ink:#f2c46b;
+  --v-safe:#22c55e; --v-honeypot:#f59e0b; --v-rug:#f05252; --v-drainer:#b57cf6; --v-phishing:#5b8def;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans)}
+a{color:inherit;text-underline-offset:3px;text-decoration-color:var(--ink-3)}
+a:hover{text-decoration-color:var(--ink)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+code,.mono{font-family:var(--mono);font-size:.92em}
+
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;font-size:18px;text-decoration:none}
+.brand svg{width:26px;height:26px}
+nav.links{display:flex;gap:18px;font-size:14px;color:var(--ink-2)}
+nav.links a{text-decoration:none}
+nav.links a:hover{color:var(--ink)}
+
+.hero{padding:36px 0 10px}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.08;letter-spacing:-.025em;margin:0 0 12px;max-width:16ch}
+.hero p{color:var(--ink-2);max-width:62ch;margin:0 0 22px;font-size:16px}
+form.search{display:flex;gap:8px;max-width:680px}
+form.search input{flex:1;min-width:0;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:15px var(--mono)}
+form.search input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+button{font:inherit;cursor:pointer}
+.btn{padding:12px 18px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-ink);font-weight:600;white-space:nowrap}
+.hint{font-size:13px;color:var(--ink-3);margin-top:8px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:28px 0 8px}
+.stat{background:var(--panel);padding:14px 16px}
+.stat b{display:block;font-size:24px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--ink-3)}
+.status{font-size:12.5px;color:var(--ink-3);display:flex;align-items:center;gap:7px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ink-3)}
+.dot.live{background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+
+section{margin:34px 0}
+section h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:0 0 12px;font-weight:600}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px}
+
+.result{padding:20px}
+.result .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin-bottom:6px}
+.result .title{font-size:20px;font-weight:650;letter-spacing:-.01em;word-break:break-word}
+.result .addr{font-family:var(--mono);font-size:13px;color:var(--ink-2);word-break:break-all}
+.note{font-size:12.5px;color:var(--ink-3)}
+.verdict-line{display:flex;align-items:center;gap:12px;margin:16px 0 10px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12.5px;font-weight:650;border:1px solid var(--line);background:var(--soft);white-space:nowrap}
+.pill.harm{background:color-mix(in srgb,var(--v-rug) 14%,var(--panel));border-color:color-mix(in srgb,var(--v-rug) 40%,var(--line));color:var(--v-rug)}
+.pill.safe{background:color-mix(in srgb,var(--v-safe) 14%,var(--panel));border-color:color-mix(in srgb,var(--v-safe) 40%,var(--line));color:var(--v-safe)}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:var(--soft);min-width:80px}
+.bar i{display:block;height:100%}
+.bar i+i{box-shadow:-1px 0 0 var(--panel)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:9px;height:9px;border-radius:2px;display:inline-block}
+.empty{padding:16px;border-radius:10px;background:var(--warn-bg);color:var(--warn-ink);font-size:14px}
+.resp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--v-phishing);background:var(--soft);border-radius:0 8px 8px 0;font-size:13.5px}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:600;font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;border-bottom:1px solid var(--line)}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.click{cursor:pointer}
+tr.click:hover td{background:var(--soft)}
+.tname{font-weight:600}
+.tsub{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.tablewrap{overflow-x:auto}
+
+.feed{list-style:none;margin:0;padding:0}
+.feed li{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);font-size:14px}
+.feed li:last-child{border-bottom:0}
+.feed .when{color:var(--ink-3);font-size:12.5px;white-space:nowrap}
+.feed .what{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tag{font-size:11.5px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:5px;color:#fff;white-space:nowrap}
+
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:20px}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0}
+.steps li{counter-increment:s;position:relative;padding:14px 16px 14px 52px;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:24px;height:24px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.steps b{display:block;margin-bottom:2px}
+.steps p{margin:0;color:var(--ink-2);font-size:14px}
+pre{margin:8px 0 0;padding:10px 12px;background:var(--soft);border-radius:8px;overflow-x:auto;font:12.5px/1.5 var(--mono)}
+.muted{color:var(--ink-2)}
+.small{font-size:13px}
+footer{border-top:1px solid var(--line);margin-top:48px;padding:22px 0 40px;font-size:13px;color:var(--ink-3)}
+footer p{margin:4px 0;max-width:80ch}
+.hide{display:none!important}
+
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cols{grid-template-columns:1fr}
+  .hide-sm{display:none}
+  form.search{flex-direction:column}
+  nav.links{gap:12px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="./">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 30V17M16 17 7 6M16 17l9-11" stroke="var(--accent)" stroke-width="3.6" stroke-linecap="round" fill="none"/><circle cx="7" cy="6" r="3.2" fill="var(--accent)"/><circle cx="25" cy="6" r="3.2" fill="var(--accent)"/></svg>
+      Antibody
+    </a>
+    <nav class="links">
+      <a href="#how">How to report</a>
+      <a id="contractLink" href="#" target="_blank" rel="noopener">Contract</a>
+      <a href="https://github.com/blocknbull/antibody" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Check a contract before you sign.</h1>
+    <p>Antibody is a scam registry for BNB Chain where every Agent ID holds one vote. Agent IDs can't be transferred and each user gets one, so a hundred reports means a hundred different users, not a hundred throwaway wallets.</p>
+    <form class="search" id="search" autocomplete="off">
+      <input id="q" placeholder="Paste a contract or wallet address (0x…)" spellcheck="false" aria-label="Address to check">
+      <button class="btn" type="submit">Check</button>
+    </form>
+    <div class="hint">Reads the chain directly. Free, and nothing to sign.</div>
+  </div>
+
+  <div class="stats" aria-live="polite">
+    <div class="stat"><b id="sReports">–</b><span>reports filed</span></div>
+    <div class="stat"><b id="sIds">–</b><span>Agent IDs reporting</span></div>
+    <div class="stat"><b id="sTargets">–</b><span>addresses reported</span></div>
+    <div class="stat"><b id="sLinks">–</b><span>linked wallets</span></div>
+  </div>
+  <div class="status"><span class="dot" id="dot"></span><span id="statusText">Loading…</span></div>
+
+  <section id="resultSec" class="hide">
+    <h2>Result</h2>
+    <div class="panel result" id="result"></div>
+  </section>
+
+  <section>
+    <h2>Most reported</h2>
+    <div class="panel tablewrap">
+      <table>
+        <thead><tr><th>Address</th><th style="width:34%">Votes</th><th class="num">Total</th><th class="hide-sm">Agreement</th></tr></thead>
+        <tbody id="topBody"></tbody>
+      </table>
+    </div>
+    <div class="legend" id="legend" style="margin-top:10px"></div>
+  </section>
+
+  <div class="cols">
+    <section>
+      <h2>Latest reports</h2>
+      <div class="panel"><ul class="feed" id="feed"></ul></div>
+    </section>
+    <section>
+      <h2>Reporters</h2>
+      <div class="panel tablewrap">
+        <table>
+          <thead><tr><th>Agent ID wallet</th><th class="num">Votes</th><th class="num">Score</th></tr></thead>
+          <tbody id="repBody"></tbody>
+        </table>
+      </div>
+      <p class="note">Score v1: +1 for each settled address you called the same way as the majority (SAFE vs harmful, at least 3 votes and two thirds agreeing), −1 for each you called the other way. It is advisory only. Checks against what then happens on-chain are planned.</p>
+    </section>
+  </div>
+
+  <section id="how">
+    <h2>How to report</h2>
+    <div class="panel">
+      <ol class="steps">
+        <li><b>Hold an Agent ID</b><p>Claim your <code>name.ai</code> in the Binance app: Wallet, then the Agent ID banner. One per user, kept in your Agentic Wallet.</p></li>
+        <li><b>Let your agent check before signing</b><p>Install the Antibody skill alongside the Binance Agentic Wallet skill. Before any contract call, your agent reads the votes and tells you what it found. Reading is free.</p>
+          <pre>python3 cli/antibody.py check 0xContract</pre></li>
+        <li><b>Report what your preview revealed</b><p>If a preview shows a honeypot, drainer, rug or phishing contract, your agent offers to report it. You confirm in your wallet. Each report is one transaction, about $0.01 of gas.</p>
+          <pre>python3 cli/antibody.py report 0xContract honeypot --evidence preview.json</pre></li>
+        <li><b>Optional: link an everyday wallet</b><p>An Agentic Wallet can't connect to dApps. Agent Link lets one ordinary wallet act for your Agent ID. It needs a signature from each side, either side can end it, and it never gives you a second vote.</p></li>
+      </ol>
+    </div>
+    <p class="note">Antibody never asks for a pairing code, seed phrase or key, keeps no sessions, and can't move funds. Every report is signed by you.</p>
+  </section>
+
+  <footer>
+    <p><b>Open source, no owner.</b> The contract has no admin, upgrade, fee, token or withdrawal. It stores votes and nothing else. <a id="footContract" href="#" target="_blank" rel="noopener">Verified source</a> · <a href="https://github.com/blocknbull/antibody" target="_blank" rel="noopener">GitHub</a></p>
+    <p>Votes are opinions from Agent ID holders, not audits. "No reports" doesn't mean safe. Token names shown here come from the contracts themselves and may be lies. Always read your wallet's preview.</p>
+  </footer>
+</div>
+
+<script>
+"use strict";
+// ---------------------------------------------------------------- config
+const CFG = {
+  contract: "0x81f1a94ad7e4d6f9a8c349f21e4749d694751f5b",
+  deployedBlock: 134704540,
+  rpc: "https://bsc-rpc.publicnode.com",
+  explorer: "https://bscscan.com",
+  data: "data.json",
+};
+// Overrides are honoured only on a local preview, so a shared link can never point this page at another contract.
+if (["localhost", "127.0.0.1"].includes(location.hostname)) {
+  const q = new URLSearchParams(location.search);
+  for (const k of ["contract", "rpc", "data", "explorer", "deployedBlock"]) if (q.get(k)) CFG[k] = k === "deployedBlock" ? +q.get(k) : q.get(k).toLowerCase();
+}
+
+const VERDICTS = ["NONE", "SAFE", "HONEYPOT", "RUG", "DRAINER", "PHISHING"];
+const VCOLOR = { SAFE: "--v-safe", HONEYPOT: "--v-honeypot", RUG: "--v-rug", DRAINER: "--v-drainer", PHISHING: "--v-phishing" };
+const T = {
+  "0x8220a4ede788c7fe86843bae980fca67b06a8209c4b1987153da643b2d1a7bee": "report",
+  "0x8e82bed75391582864a87043fa1ad14d3cfbfe3182dd3bb34f2d05680a46585b": "response",
+  "0x98b1cb69d282a8b071b735521345a5ce14fab51880986bc5087cf930807d883e": "linkOffered",
+  "0x5febe1b9e375a634d9d565149e636879057714c557b8c78aab7cccae8cf48e48": "linked",
+  "0x2907c66279ef6379e65c015c50c76fa0554a6bd8cd1c5614353d64517e279e14": "unlinked",
+};
+const SPAN = 50000;
+
+// ---------------------------------------------------------------- helpers
+const $ = (id) => document.getElementById(id);
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v; else if (k === "style") n.style.cssText = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v);
+  }
+  for (const k of kids.flat()) if (k != null) n.append(k.nodeType ? k : document.createTextNode(String(k)));
+  return n;
+}
+const short = (a) => a.slice(0, 6) + "…" + a.slice(-4);
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const link = (href, text, cls) => el("a", { href, target: "_blank", rel: "noopener", class: cls || "" }, text);
+const addrLink = (a) => link(`${CFG.explorer}/address/${a}`, short(a), "mono");
+function ago(ts) {
+  if (!ts) return "";
+  const s = Math.max(0, Date.now() / 1000 - ts);
+  if (s < 90) return "just now";
+  if (s < 5400) return Math.round(s / 60) + " min ago";
+  if (s < 129600) return Math.round(s / 3600) + " h ago";
+  return Math.round(s / 86400) + " d ago";
+}
+let rpcId = 0;
+async function rpc(method, params) {
+  const r = await fetch(CFG.rpc, { method: "POST", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ jsonrpc: "2.0", id: ++rpcId, method, params }) });
+  const d = await r.json();
+  if (d.error) throw new Error(d.error.message || "rpc error");
+  return d.result;
+}
+const word = (a) => a.toLowerCase().replace(/^0x/, "").padStart(64, "0");
+const topicAddr = (t) => "0x" + t.slice(-40).toLowerCase();
+function decodeString(ret) {
+  try {
+    const h = ret.slice(2); if (h.length < 64) return null;
+    let bytes;
+    if (h.length >= 128) {
+      const off = parseInt(h.slice(0, 64), 16) * 2, n = parseInt(h.slice(off, off + 64), 16);
+      if (n > 256) return null;
+      bytes = h.slice(off + 64, off + 64 + n * 2);
+    } else bytes = h.slice(0, 64).replace(/(00)+$/, "");
+    const s = new TextDecoder().decode(Uint8Array.from((bytes.match(/../g) || []).map((x) => parseInt(x, 16))));
+    const clean = [...s].filter((c) => c >= " " && c !== "\u007f").join("").trim();
+    return clean.slice(0, 40) || null;
+  } catch { return null; }
+}
+
+// ---------------------------------------------------------------- state
+let events = [], labels = {}, times = {}, lastBlock = CFG.deployedBlock - 1, model = null;
+
+function parseLog(l) {
+  const type = T[l.topics[0].toLowerCase()]; if (!type) return null;
+  const w = l.data.slice(2).match(/.{64}/g) || [];
+  const base = { type, block: parseInt(l.blockNumber, 16), tx: l.transactionHash, logIndex: parseInt(l.logIndex, 16) };
+  if (type === "report") return { ...base, target: topicAddr(l.topics[1]), identity: topicAddr(l.topics[2]),
+    verdict: VERDICTS[parseInt(w[0], 16)], previous: VERDICTS[parseInt(w[1], 16)], evidence: "0x" + w[2] };
+  if (type === "response") return { ...base, target: topicAddr(l.topics[1]), responder: topicAddr(l.topics[2]), evidence: "0x" + w[0] };
+  return { ...base, identity: topicAddr(l.topics[1]), wallet: topicAddr(l.topics[2]) };
+}
+
+function build(evts) {
+  const votes = {}, last = {}, responses = {}, links = {}, history = {};
+  for (const e of evts) {
+    if (e.type === "report") {
+      const tv = (votes[e.target] ||= {});
+      if (e.verdict === "NONE") delete tv[e.identity]; else tv[e.identity] = e.verdict;
+      last[e.target] = e;
+      (history[e.target] ||= []).push(e);
+    } else if (e.type === "response") (responses[e.target] ||= []).push(e);
+    else if (e.type === "linked") links[e.identity] = e.wallet;
+    else if (e.type === "unlinked") delete links[e.identity];
+  }
+  const targets = {}, reporters = {};
+  for (const [t, tv] of Object.entries(votes)) {
+    const counts = VERDICTS.map(() => 0);
+    for (const v of Object.values(tv)) counts[VERDICTS.indexOf(v)]++;
+    const total = counts.reduce((a, b) => a + b, 0), bad = total - counts[1];
+    let consensus = null;
+    if (total >= 3) { if (bad * 3 >= total * 2) consensus = "HARMFUL"; else if (counts[1] * 3 >= total * 2) consensus = "SAFE"; }
+    targets[t] = { addr: t, counts, total, bad, consensus, votes: tv, last: last[t], history: history[t] || [], responses: responses[t] || [] };
+    for (const [id, v] of Object.entries(tv)) {
+      const r = (reporters[id] ||= { addr: id, votes: 0, agree: 0, disagree: 0 });
+      r.votes++;
+      if (consensus) ((v !== "SAFE") === (consensus === "HARMFUL")) ? r.agree++ : r.disagree++;
+    }
+  }
+  for (const [t, rs] of Object.entries(responses)) targets[t] ||= { addr: t, counts: VERDICTS.map(() => 0), total: 0, bad: 0, consensus: null, votes: {}, last: null, history: [], responses: rs };
+  for (const r of Object.values(reporters)) r.score = r.agree - r.disagree;
+  const reports = evts.filter((e) => e.type === "report" && e.verdict !== "NONE").length;
+  return { targets, reporters, links: Object.keys(links).length, reports };
+}
+
+// ---------------------------------------------------------------- render
+function verdictBar(counts, total) {
+  const bar = el("div", { class: "bar", role: "img", "aria-label": VERDICTS.slice(1).map((v, i) => `${counts[i + 1]} ${v}`).join(", ") });
+  if (!total) return bar;
+  VERDICTS.slice(1).forEach((v, i) => { if (counts[i + 1]) bar.append(el("i", { style: `width:${(100 * counts[i + 1]) / total}%;background:var(${VCOLOR[v]})`, title: `${counts[i + 1]} ${v}` })); });
+  return bar;
+}
+function consensusPill(t) {
+  if (t.consensus === "HARMFUL") return el("span", { class: "pill harm" }, "Mostly reported harmful");
+  if (t.consensus === "SAFE") return el("span", { class: "pill safe" }, "Mostly reported safe");
+  return el("span", { class: "pill" }, t.total ? "Not settled yet" : "No reports");
+}
+function tag(v) { return el("span", { class: "tag", style: `background:var(${VCOLOR[v] || "--ink-3"})` }, v === "NONE" ? "RETRACTED" : v); }
+function nameOf(a) { const l = labels[a]; return l && (l.name || l.symbol) ? `${l.name || ""}${l.symbol ? " (" + l.symbol + ")" : ""}`.trim() : null; }
+
+function renderStats() {
+  $("sReports").textContent = model.reports.toLocaleString();
+  $("sIds").textContent = Object.keys(model.reporters).length.toLocaleString();
+  $("sTargets").textContent = Object.values(model.targets).filter((t) => t.total).length.toLocaleString();
+  $("sLinks").textContent = model.links.toLocaleString();
+}
+function renderTop() {
+  const body = $("topBody"); body.replaceChildren();
+  const rows = Object.values(model.targets).filter((t) => t.total).sort((a, b) => b.total - a.total || (b.last?.block || 0) - (a.last?.block || 0)).slice(0, 15);
+  if (!rows.length) { body.append(el("tr", {}, el("td", { colspan: 4, class: "muted" }, "No reports yet. Be the first: see How to report below."))); return; }
+  for (const t of rows) {
+    const n = nameOf(t.addr);
+    body.append(el("tr", { class: "click", tabindex: "0", onclick: () => show(t.addr), onkeydown: (e) => e.key === "Enter" && show(t.addr) },
+      el("td", {}, el("div", { class: "tname" }, n || (labels[t.addr]?.isContract === false ? "Wallet address" : short(t.addr))), el("div", { class: "tsub" }, short(t.addr))),
+      el("td", {}, verdictBar(t.counts, t.total)),
+      el("td", { class: "num" }, t.total),
+      el("td", { class: "hide-sm" }, consensusPill(t))));
+  }
+}
+function renderLegend() {
+  $("legend").replaceChildren(...VERDICTS.slice(1).map((v) => el("span", {}, el("i", { class: "sw", style: `background:var(${VCOLOR[v]})` }), v.charAt(0) + v.slice(1).toLowerCase())));
+}
+function renderFeed() {
+  const ul = $("feed"); ul.replaceChildren();
+  const recent = events.filter((e) => e.type === "report" || e.type === "response").slice(-12).reverse();
+  if (!recent.length) { ul.append(el("li", {}, el("span", { class: "muted", style: "grid-column:1/-1" }, "Nothing yet."))); return; }
+  for (const e of recent) {
+    const n = nameOf(e.target);
+    const what = el("a", { href: "#", class: "what", onclick: (ev) => { ev.preventDefault(); show(e.target); } }, n || short(e.target));
+    const left = e.type === "response" ? el("span", { class: "tag", style: "background:var(--ink-3)" }, "RESPONSE") : tag(e.verdict);
+    ul.append(el("li", {}, left, what, link(`${CFG.explorer}/tx/${e.tx}`, ago(e.time) || "tx", "when")));
+  }
+}
+function renderReporters() {
+  const body = $("repBody"); body.replaceChildren();
+  const rows = Object.values(model.reporters).sort((a, b) => b.score - a.score || b.votes - a.votes).slice(0, 12);
+  if (!rows.length) { body.append(el("tr", {}, el("td", { colspan: 3, class: "muted" }, "No reporters yet."))); return; }
+  for (const r of rows) body.append(el("tr", {}, el("td", {}, addrLink(r.addr)), el("td", { class: "num" }, r.votes), el("td", { class: "num" }, (r.score > 0 ? "+" : "") + r.score)));
+}
+function renderAll() { model = build(events); renderStats(); renderTop(); renderFeed(); renderReporters(); }
+
+// ---------------------------------------------------------------- lookup
+async function fetchLabel(a) {
+  if (labels[a]) return labels[a];
+  const info = {};
+  try {
+    const code = await rpc("eth_getCode", [a, "latest"]);
+    info.isContract = !!code && code !== "0x";
+    if (info.isContract) {
+      const [n, s] = await Promise.allSettled([rpc("eth_call", [{ to: a, data: "0x06fdde03" }, "latest"]), rpc("eth_call", [{ to: a, data: "0x95d89b41" }, "latest"])]);
+      info.name = n.status === "fulfilled" ? decodeString(n.value) : null;
+      info.symbol = s.status === "fulfilled" ? decodeString(s.value) : null;
+    }
+  } catch { /* leave unlabeled */ }
+  return (labels[a] = info);
+}
+
+async function show(addr) {
+  addr = addr.toLowerCase();
+  $("q").value = addr;
+  const qs = new URLSearchParams(location.search); qs.set("a", addr);
+  history.replaceState(null, "", "?" + qs.toString() + (location.hash || ""));
+  const box = $("result"); $("resultSec").classList.remove("hide");
+  box.replaceChildren(el("div", { class: "muted" }, "Reading the chain…"));
+  $("resultSec").scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const [info, live] = await Promise.all([fetchLabel(addr), rpc("eth_call", [{ to: CFG.contract, data: "0x9192724e" + word(addr) }, "latest"]).catch(() => null)]);
+  const t = model.targets[addr] || { addr, counts: VERDICTS.map(() => 0), total: 0, consensus: null, votes: {}, history: [], responses: [] };
+  if (live && live.length >= 2 + 64 * 7) {   // the contract is the source of truth for the counts
+    const w = live.slice(2).match(/.{64}/g).map((x) => parseInt(x, 16));
+    t.counts = w.slice(0, 6); t.total = w[6]; t.bad = t.total - t.counts[1];
+    if (t.total >= 3) t.consensus = t.bad * 3 >= t.total * 2 ? "HARMFUL" : t.counts[1] * 3 >= t.total * 2 ? "SAFE" : null; else t.consensus = null;
+  }
+  const n = nameOf(addr);
+  const kids = [
+    el("div", { class: "head" }, el("div", { class: "title" }, n || (info.isContract === false ? "Wallet address" : info.isContract ? "Contract" : "Address")), link(`${CFG.explorer}/address/${addr}`, addr, "addr")),
+  ];
+  if (n) kids.push(el("div", { class: "note" }, "Name and symbol are read from the contract itself and are not verified."));
+  if (!t.total) {
+    kids.push(el("div", { class: "verdict-line" }, consensusPill(t)));
+    kids.push(el("div", { class: "empty" }, "No Agent ID holder has reported this address. That isn't evidence that it's safe: check your wallet's preview before signing."));
+  } else {
+    kids.push(el("div", { class: "verdict-line" }, consensusPill(t), el("span", { class: "muted small" }, `${t.total} Agent ID vote${t.total === 1 ? "" : "s"}`)));
+    kids.push(el("div", { style: "max-width:520px" }, verdictBar(t.counts, t.total)));
+    kids.push(el("div", { class: "legend", style: "margin-top:8px" }, ...VERDICTS.slice(1).map((v, i) => t.counts[i + 1] ? el("span", {}, el("i", { class: "sw", style: `background:var(${VCOLOR[v]})` }), `${t.counts[i + 1]} ${v.toLowerCase()}`) : null)));
+  }
+  for (const r of t.responses) kids.push(el("div", { class: "resp" }, el("b", {}, "The project responded. "), "Its owner posted counter-evidence ", el("span", { class: "mono" }, r.evidence.slice(0, 18) + "…"), " ", link(`${CFG.explorer}/tx/${r.tx}`, ago(r.time) || "tx")));
+  const votes = Object.entries(t.votes || {});
+  if (votes.length) {
+    const tb = el("tbody");
+    for (const [id, v] of votes) {
+      const ev = [...t.history].reverse().find((e) => e.identity === id && e.verdict === v);
+      tb.append(el("tr", {}, el("td", {}, addrLink(id)), el("td", {}, tag(v)), el("td", { class: "num muted small" }, ev ? link(`${CFG.explorer}/tx/${ev.tx}`, ago(ev.time) || "tx") : "")));
+    }
+    kids.push(el("div", { class: "tablewrap", style: "margin-top:16px" }, el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "Agent ID wallet"), el("th", {}, "Verdict"), el("th", { class: "num" }, "When"))), tb)));
+  }
+  box.replaceChildren(...kids);
+}
+
+// ---------------------------------------------------------------- load
+function status(text, live) { $("statusText").textContent = text; $("dot").classList.toggle("live", !!live); }
+
+async function catchUp() {
+  const head = parseInt(await rpc("eth_blockNumber", []), 16);
+  let from = lastBlock + 1, added = [];
+  const floor = head - SPAN * 4;           // at most four requests from a browser; the indexer covers the rest
+  if (from < floor) from = floor;
+  while (from <= head) {
+    const to = Math.min(from + SPAN - 1, head);
+    const logs = await rpc("eth_getLogs", [{ address: CFG.contract, fromBlock: "0x" + from.toString(16), toBlock: "0x" + to.toString(16) }]);
+    added.push(...logs.map(parseLog).filter(Boolean));
+    from = to + 1;
+  }
+  const seen = new Set(events.map((e) => e.tx + ":" + e.logIndex));
+  added = added.filter((e) => !seen.has(e.tx + ":" + e.logIndex)).sort((a, b) => a.block - b.block || a.logIndex - b.logIndex);
+  const blocks = [...new Set(added.map((e) => e.block))].filter((b) => !times[b]).slice(-40);
+  await Promise.all(blocks.map(async (b) => { try { times[b] = parseInt((await rpc("eth_getBlockByNumber", ["0x" + b.toString(16), false])).timestamp, 16); } catch {} }));
+  for (const e of added) e.time = times[e.block];
+  events.push(...added);
+  lastBlock = head;
+  const fresh = [...new Set(added.map((e) => e.target).filter(Boolean))].filter((a) => !labels[a]).slice(0, 20);
+  await Promise.all(fresh.map(fetchLabel));
+  return added.length;
+}
+
+async function boot() {
+  $("contractLink").href = $("footContract").href = `${CFG.explorer}/address/${CFG.contract}#code`;
+  renderLegend();
+  try {
+    const r = await fetch(CFG.data, { cache: "no-store" });
+    if (r.ok) {
+      const snap = await r.json();
+      if ((snap.contract || "").toLowerCase() === CFG.contract) {
+        events = snap.events || []; labels = snap.labels || {}; times = snap.blockTimes || {}; lastBlock = snap.lastBlock ?? lastBlock;
+        for (const e of events) e.time ??= times[e.block];
+      }
+    }
+  } catch { /* no snapshot: read from the chain */ }
+  renderAll();
+  status("Catching up with the chain…");
+  const q = new URLSearchParams(location.search).get("a");
+  try {
+    await catchUp(); renderAll();
+    status(`Live · BNB Chain block ${lastBlock.toLocaleString()}`, true);
+  } catch (e) {
+    status(`Showing the last snapshot (block ${lastBlock.toLocaleString()}). Live read failed: ${e.message}`);
+  }
+  if (q && /^0x[0-9a-fA-F]{40}$/.test(q)) show(q);
+  setInterval(async () => { try { if (await catchUp()) renderAll(); status(`Live · BNB Chain block ${lastBlock.toLocaleString()}`, true); } catch {} }, 30000);
+}
+
+$("search").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const v = $("q").value.trim();
+  if (!/^0x[0-9a-fA-F]{40}$/.test(v)) { $("resultSec").classList.remove("hide"); $("result").replaceChildren(el("div", { class: "empty" }, "That isn't a BNB Chain address. Paste one that starts with 0x and has 40 hex characters.")); return; }
+  show(v);
+});
+boot();
+</script>
+</body>
+</html>

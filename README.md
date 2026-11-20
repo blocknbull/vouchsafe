@@ -52,6 +52,9 @@ test/fork/                  tests against the live Agent ID contract on BNB Chai
 script/Deploy.s.sol         deployment
 cli/antibody.py             check / whoami / report / retract / link (stdlib + cast + baw)
 skill/antibody/SKILL.md     agent skill: check before signing, offer to report after a bad preview
+indexer/index.py            reads events into docs/data.json (stdlib; a GitHub Action runs it every 15 min)
+docs/index.html             the public page: lookups, most reported, latest reports, reporters
+script/dev/SeedLocal.s.sol  demo data on a local anvil node, for developing the page
 ```
 
 ## Run

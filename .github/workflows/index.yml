@@ -1,0 +1,37 @@
+# Refreshes docs/data.json (the snapshot the public page loads) from Antibody's on-chain events.
+# Read-only: no key, no secret, signs nothing. The page also reads anything newer straight from the chain.
+name: index
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: index
+  cancel-in-progress: false
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Index events
+        run: python3 indexer/index.py
+      - name: Commit snapshot if it changed
+        run: |
+          # lastBlock and updatedAt move every run; only commit when the events themselves changed,
+          # or once an hour so the page's "indexed to" stays roughly current.
+          if git diff --quiet -- docs/data.json; then exit 0; fi
+          old=$(git show HEAD:docs/data.json 2>/dev/null | python3 -c "import sys,json;print(len(json.load(sys.stdin).get('events',[])))" 2>/dev/null || echo -1)
+          new=$(python3 -c "import json;print(len(json.load(open('docs/data.json'))['events']))")
+          if [ "$old" = "$new" ] && [ "$(date -u +%M)" -ge 15 ]; then exit 0; fi
+          git config user.name "antibody-indexer"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data.json
+          git commit -m "index: $new events"
+          git push
