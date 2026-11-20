@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Antibody indexer. Standard library only, no key, signs nothing: it only reads public events.
+"""Vouchsafe Shield indexer. Standard library only, no key, signs nothing: it only reads public events.
 
-Reads every Antibody event since the last run, replays them into current votes, and writes docs/data.json,
+Reads every Shield event since the last run, replays them into current votes, and writes docs/data.json,
 which the public page loads. Safe to run repeatedly; each run continues from the last indexed block.
 
   python3 indexer/index.py                 # BNB Chain mainnet, the deployed contract
-  ANTIBODY_RPC=http://127.0.0.1:8545 ANTIBODY_ADDR=0x... ANTIBODY_FROM_BLOCK=0 python3 indexer/index.py --out /tmp/x.json
+  VOUCHSAFE_RPC=http://127.0.0.1:8545 VOUCHSAFE_SHIELD=0x... VOUCHSAFE_FROM_BLOCK=0 python3 indexer/index.py --out /tmp/x.json
 
 Reputation here is v1 and advisory: a target is "settled" once at least 3 identities have voted and at least
 two thirds of them agree on SAFE vs harmful. A reporter gains a point for each settled target they called the
@@ -16,12 +16,12 @@ from __future__ import annotations
 import argparse, json, os, sys, time, urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CFG = json.load(open(os.path.join(ROOT, "cli", "antibody.json")))
-RPC = os.environ.get("ANTIBODY_RPC", CFG["rpc"])
-ADDR = os.environ.get("ANTIBODY_ADDR", CFG["antibody"]).lower()
-FROM_BLOCK = int(os.environ.get("ANTIBODY_FROM_BLOCK", CFG.get("deployedBlock", 0)))
+CFG = json.load(open(os.path.join(ROOT, "cli", "vouchsafe.json")))
+RPC = os.environ.get("VOUCHSAFE_RPC", CFG["rpc"])
+ADDR = os.environ.get("VOUCHSAFE_SHIELD", CFG["shield"]).lower()
+FROM_BLOCK = int(os.environ.get("VOUCHSAFE_FROM_BLOCK", CFG.get("deployedBlock", 0)))
 if not ADDR.startswith("0x") or len(ADDR) != 42:
-    sys.exit(f"bad Antibody address {ADDR!r}")
+    sys.exit(f"bad Shield address {ADDR!r}")
 SPAN = 50_000            # publicnode's maximum block range per eth_getLogs
 CONFIRMATIONS = 3        # stay a few blocks behind the head so reorgs do not leave ghosts
 
@@ -39,7 +39,7 @@ def rpc(method: str, params: list, tries: int = 4):
     body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": method, "params": params}).encode()
     for i in range(tries):
         try:
-            req = urllib.request.Request(RPC, body, {"content-type": "application/json", "user-agent": "antibody-indexer"})
+            req = urllib.request.Request(RPC, body, {"content-type": "application/json", "user-agent": "vouchsafe-indexer"})
             with urllib.request.urlopen(req, timeout=30) as r:
                 d = json.load(r)
             if "error" in d:

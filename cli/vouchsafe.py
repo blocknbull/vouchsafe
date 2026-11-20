@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Antibody CLI for a Binance Agentic Wallet. Standard library only; uses `cast` (Foundry) and `baw`.
+"""Vouchsafe CLI (Shield) for a Binance Agentic Wallet. Standard library only; uses `cast` (Foundry) and `baw`.
 
 Reads cost nothing and sign nothing:
-  antibody.py check  <target>                 vote counts for a contract or address
-  antibody.py whoami [address]                is this address Agent-ID-backed, and as which identity
+  vouchsafe.py check  <target>                 vote counts for a contract or address
+  vouchsafe.py whoami [address]                is this address Agent-ID-backed, and as which identity
 
 Writes are previewed by the wallet, shown to you, and sent only after you type y. One tx per confirmation:
-  antibody.py report <target> <verdict> [--evidence FILE] [--note TEXT]
-  antibody.py retract <target>
-  antibody.py link <wallet>                   step 1 of Agent Link, from the agentic wallet
+  vouchsafe.py report <target> <verdict> [--evidence FILE] [--note TEXT]
+  vouchsafe.py retract <target>
+  vouchsafe.py link <wallet>                   step 1 of Agent Link, from the agentic wallet
                                               (step 2, acceptLink, is sent from <wallet> itself; this prints it)
 
 Verdicts: safe honeypot rug drainer phishing
@@ -19,14 +19,14 @@ from __future__ import annotations
 import argparse, hashlib, json, os, subprocess, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CFG = json.load(open(os.path.join(HERE, "antibody.json")))
-# Your own agentic wallet address goes in antibody.local.json (not committed): {"from": "0x..."}
-_LOCAL = os.path.join(HERE, "antibody.local.json")
+CFG = json.load(open(os.path.join(HERE, "vouchsafe.json")))
+# Your own agentic wallet address goes in vouchsafe.local.json (not committed): {"from": "0x..."}
+_LOCAL = os.path.join(HERE, "vouchsafe.local.json")
 if os.path.exists(_LOCAL):
     CFG.update(json.load(open(_LOCAL)))
 # Overrides for testing against a local fork (anvil); never needed in normal use.
-CFG["rpc"] = os.environ.get("ANTIBODY_RPC", CFG["rpc"])
-CFG["antibody"] = os.environ.get("ANTIBODY_ADDR", CFG.get("antibody"))
+CFG["rpc"] = os.environ.get("VOUCHSAFE_RPC", CFG["rpc"])
+CFG["shield"] = os.environ.get("VOUCHSAFE_SHIELD", CFG.get("shield"))
 CHAIN_ID = str(CFG["chainId"])
 RPC = CFG["rpc"]
 BAW = next((p for p in map(os.path.expanduser, ["~/.hermes/node/bin/baw", "~/.local/bin/baw"]) if os.path.exists(p)), "baw")
@@ -40,10 +40,10 @@ def die(msg: str) -> None:
     sys.exit(1)
 
 
-def antibody() -> str:
-    a = CFG.get("antibody")
+def shield() -> str:
+    a = CFG.get("shield")
     if not a:
-        die("Antibody is not deployed yet: set \"antibody\" in cli/antibody.json to the deployed address.")
+        die("Shield is not deployed yet: set \"shield\" in cli/vouchsafe.json to the deployed address.")
     return a
 
 
@@ -55,7 +55,7 @@ def cast(*args: str) -> str:
 
 
 def call(sig: str, *args: str) -> str:
-    return cast("call", antibody(), sig, *args, "--rpc-url", RPC)
+    return cast("call", shield(), sig, *args, "--rpc-url", RPC)
 
 
 def baw(*args: str) -> dict:
@@ -69,7 +69,7 @@ def baw(*args: str) -> dict:
 def agent_wallet() -> str:
     w = CFG.get("from")
     if not w:
-        die("put your agentic wallet address in cli/antibody.local.json as {\"from\": \"0x...\"}")
+        die("put your agentic wallet address in cli/vouchsafe.local.json as {\"from\": \"0x...\"}")
     return w
 
 
@@ -104,8 +104,8 @@ def cmd_whoami(a) -> None:
 # ------------------------------------------------------------------ writes
 
 def send(data: str, what: str) -> None:
-    """Preview with the wallet, refuse anything that is not a plain zero-value call to Antibody, ask, execute."""
-    me, to = agent_wallet(), antibody()
+    """Preview with the wallet, refuse anything that is not a plain zero-value call to Shield, ask, execute."""
+    me, to = agent_wallet(), shield()
     d = baw("contract-call", "preview", "--binanceChainId", CHAIN_ID, "--from", me, "--to", to,
             "--value", "0", "--inputData", data)
     if not d.get("success"):
@@ -115,11 +115,11 @@ def send(data: str, what: str) -> None:
     problems = [k for k in ("riskDetails", "riskBehaviors") if rk.get(k)]
     problems += [k for k in ("authorityChanges", "allowanceChanges", "simulationErrorDetail") if sim.get(k)]
     if sim.get("balanceChanges"):
-        problems.append("balance changes (an Antibody call moves no assets)")
+        problems.append("balance changes (a Shield call moves no assets)")
     if problems:
         die(f"preview carries {', '.join(problems)}; not sending")
     fee = x.get("networkFee") or x.get("gasFee") or "see wallet"
-    print(f"\n  {what}\n  from {me}\n  to   {to} (Antibody)\n  value 0   fee {fee}\n  preview clean")
+    print(f"\n  {what}\n  from {me}\n  to   {to} (Shield)\n  value 0   fee {fee}\n  preview clean")
     if input("  sign and send this one transaction? [y/N] ").strip().lower() != "y":
         print("  not sent")
         return
@@ -165,7 +165,7 @@ def cmd_retract(a) -> None:
 def cmd_link(a) -> None:
     send(cast("calldata", "offerLink(address)", a.wallet), f"offer Agent Link to {a.wallet}")
     accept = cast("calldata", "acceptLink(address)", agent_wallet())
-    print(f"\n  Step 2, from {a.wallet} itself (not from here): call Antibody {antibody()}\n"
+    print(f"\n  Step 2, from {a.wallet} itself (not from here): call Shield {shield()}\n"
           f"  acceptLink({agent_wallet()})   calldata {accept}\n"
           "  e.g. BscScan > Contract > Write Contract > acceptLink, connected with that wallet.")
 

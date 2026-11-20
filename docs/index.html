@@ -3,228 +3,491 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Antibody</title>
-<meta name="description" content="Scam reports on BNB Chain, one vote per Agent ID. Check any contract before you sign.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 30V17M16 17 7 6M16 17l9-11' stroke='%2322c55e' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='7' cy='6' r='3.4' fill='%2322c55e'/%3E%3Ccircle cx='25' cy='6' r='3.4' fill='%2322c55e'/%3E%3C/svg%3E">
+<title>Vouchsafe</title>
+<meta name="description" content="Trust tools for BNB Chain built on Agent ID. Shield: check any contract before you sign. Sift: filter airdrop lists to real users. Errands: hire agents with escrow.">
+<meta name="theme-color" content="#14233F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314233F'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23C9A54C' stroke-width='1.6'/%3E%3Cpath d='M10.5 11l5.5 11 5.5-11' fill='none' stroke='%23C9A54C' stroke-width='2.2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Martian+Mono:wdth,wght@87.5,400;87.5,500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f7f4; --panel:#ffffff; --ink:#14171a; --ink-2:#4a525a; --ink-3:#7b838b; --line:#e3e6e0; --soft:#eef0eb;
-  --accent:#15803d; --accent-ink:#ffffff; --warn-bg:#fff7e6; --warn-ink:#8a5a00;
-  --v-safe:#16a34a; --v-honeypot:#d97706; --v-rug:#dc2626; --v-drainer:#9333ea; --v-phishing:#2563eb;
-  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-  --sans:ui-sans-serif,-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --cover:#14233F; --cover-deep:#0C1729; --burgundy:#7A1F35; --burgundy-ink:#FFFFFF;
+  --paper:#DDE8E2; --paper-2:#D2E0D9; --print:#3E8E8A; --print-soft:rgba(62,142,138,.16);
+  --ink:#12203A; --ink-2:#34485F; --ink-3:#4F6377; --rule:rgba(18,32,58,.18);
+  --gold:#C9A54C; --stitch:rgba(201,165,76,.55); --accent-text:#7A1F35;
+  --board:#1B2E50; --edge:#C6D3CC; --edge-2:#B5C4BC; --hole:rgba(12,23,41,.62); --hole-rim:rgba(255,255,255,.55); --holo-o:.24; --holo-blend:multiply; --ovd-o:.85; --ovd-blend:normal; --ovd-sat:.9;
+  --st-red:#B3261E; --st-green:#1F7A4D; --st-violet:#5B3E96; --st-blue:#1E5AA8; --st-amber:#A15C07;
+  --v-safe:var(--st-green); --v-honeypot:var(--st-amber); --v-rug:var(--st-red); --v-drainer:var(--st-violet); --v-phishing:var(--st-blue);
+  --display:"Bodoni Moda",Didot,"Bodoni 72",serif;
+  --sans:"Schibsted Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --mono:"Martian Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0c0f0d; --panel:#131815; --ink:#e8ece9; --ink-2:#aab3ad; --ink-3:#77817a; --line:#232a25; --soft:#1a201c;
-  --accent:#22c55e; --accent-ink:#06210f; --warn-bg:#2a2210; --warn-ink:#f2c46b;
-  --v-safe:#22c55e; --v-honeypot:#f59e0b; --v-rug:#f05252; --v-drainer:#b57cf6; --v-phishing:#5b8def;
+  --cover:#0A1322; --cover-deep:#060C17; --paper:#13223A; --paper-2:#172A45; --print:#5FB3AD; --print-soft:rgba(95,179,173,.13);
+  --ink:#E4EEE9; --ink-2:#B9CCC4; --ink-3:#93A9A1; --rule:rgba(228,238,233,.16);
+  --burgundy:#B4425D; --gold:#D6B65E; --stitch:rgba(214,182,94,.45); --accent-text:#EBA3B5;
+  --st-red:#F0675C; --st-green:#4FC08A; --st-violet:#A88BE6; --st-blue:#6FA2EE; --st-amber:#E7A33E;
+  --board:#12203A; --edge:#1E3150; --edge-2:#192A45; --hole:#02060E; --hole-rim:rgba(150,200,190,.45); --holo-o:.13; --holo-blend:screen; --ovd-o:.5; --ovd-blend:screen; --ovd-sat:.55;
   color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --bg:#0c0f0d; --panel:#131815; --ink:#e8ece9; --ink-2:#aab3ad; --ink-3:#77817a; --line:#232a25; --soft:#1a201c;
-  --accent:#22c55e; --accent-ink:#06210f; --warn-bg:#2a2210; --warn-ink:#f2c46b;
-  --v-safe:#22c55e; --v-honeypot:#f59e0b; --v-rug:#f05252; --v-drainer:#b57cf6; --v-phishing:#5b8def;
+  --cover:#0A1322; --cover-deep:#060C17; --paper:#13223A; --paper-2:#172A45; --print:#5FB3AD; --print-soft:rgba(95,179,173,.13);
+  --ink:#E4EEE9; --ink-2:#B9CCC4; --ink-3:#93A9A1; --rule:rgba(228,238,233,.16);
+  --burgundy:#B4425D; --gold:#D6B65E; --stitch:rgba(214,182,94,.45); --accent-text:#EBA3B5;
+  --st-red:#F0675C; --st-green:#4FC08A; --st-violet:#A88BE6; --st-blue:#6FA2EE; --st-amber:#E7A33E;
+  --board:#12203A; --edge:#1E3150; --edge-2:#192A45; --hole:#02060E; --hole-rim:rgba(150,200,190,.45); --holo-o:.13; --holo-blend:screen; --ovd-o:.5; --ovd-blend:screen; --ovd-sat:.55;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans)}
-a{color:inherit;text-underline-offset:3px;text-decoration-color:var(--ink-3)}
-a:hover{text-decoration-color:var(--ink)}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
-code,.mono{font-family:var(--mono);font-size:.92em}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px;overflow-x:clip}
+main{overflow-x:clip}
+body{margin:0;color:var(--ink);font:16px/1.6 var(--sans);font-kerning:normal;
+  background:var(--leather-fine) 0 0/240px,var(--leather-mottle) 0 0/900px,var(--cover)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(110% 70% at 50% -5%,rgba(255,255,255,.07),transparent 55%),radial-gradient(140% 100% at 50% 120%,rgba(0,0,0,.35),transparent 60%)}
+::selection{background:var(--gold);color:var(--cover-deep)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+html{scrollbar-color:var(--print) var(--cover)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--print)}
+a:hover{text-decoration-color:currentColor}
+code,.mono{font-family:var(--mono);font-size:.84em;letter-spacing:.01em}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
 
-header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;font-size:18px;text-decoration:none}
-.brand svg{width:26px;height:26px}
-nav.links{display:flex;gap:18px;font-size:14px;color:var(--ink-2)}
-nav.links a{text-decoration:none}
-nav.links a:hover{color:var(--ink)}
+/* ---------- cover bar ---------- */
+.bar{position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.2) blur(10px);background:color-mix(in srgb,var(--cover) 82%,transparent);border-bottom:1px solid rgba(201,165,76,.18)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.mark{display:flex;align-items:center;gap:10px;color:var(--gold);text-decoration:none;font:600 15px/1 var(--display);letter-spacing:.28em}
+.mark svg{width:28px;height:28px}
+.bar nav{display:flex;gap:26px;font:500 14px/1 var(--sans);color:#C7D3E0}
+.bar nav a{text-decoration:none;transition:color .2s}
+.bar nav a:hover{color:var(--gold)}
 
-.hero{padding:36px 0 10px}
-.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.08;letter-spacing:-.025em;margin:0 0 12px;max-width:16ch}
-.hero p{color:var(--ink-2);max-width:62ch;margin:0 0 22px;font-size:16px}
-form.search{display:flex;gap:8px;max-width:680px}
-form.search input{flex:1;min-width:0;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:15px var(--mono)}
-form.search input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
-button{font:inherit;cursor:pointer}
-.btn{padding:12px 18px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-ink);font-weight:600;white-space:nowrap}
-.hint{font-size:13px;color:var(--ink-3);margin-top:8px}
+/* ---------- the passport: spreads of two pages on one gutter ---------- */
+.spread{position:relative;display:grid;grid-template-columns:1fr 1fr;margin:58px 12px;border-radius:14px;background:var(--paper);isolation:isolate;
+  box-shadow:0 1px 0 0 var(--edge),0 3px 0 0 var(--edge-2),0 4px 0 0 var(--edge),0 6px 0 0 var(--edge-2),
+    0 0 0 12px var(--board),0 0 0 13px rgba(201,165,76,.0),
+    0 34px 70px -18px rgba(0,0,0,.6),0 10px 24px -8px rgba(0,0,0,.45)}
+.spread>.tool{position:absolute;inset:-7px;border:1px solid var(--gold);border-radius:19px;opacity:.55;pointer-events:none;z-index:-1}
+.spread>.tool::after{content:"";position:absolute;inset:-3px;border:.6px solid var(--gold);border-radius:21px;opacity:.6}
+.spread::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:44px;transform:translateX(-50%);pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.10) 42%,rgba(0,0,0,.16) 50%,rgba(0,0,0,.10) 58%,transparent)}
+.spread::before{content:"";position:absolute;top:18px;bottom:18px;left:50%;border-left:1.5px dashed var(--stitch);z-index:1}
+.page{position:relative;padding:clamp(28px,4vw,56px);overflow:hidden;min-width:0;container-type:inline-size}
+.page.l{border-radius:14px 0 0 14px}
+.page.r{border-radius:0 14px 14px 0}
+.page::before{content:"";position:absolute;inset:0;z-index:-1;background-image:var(--guilloche);background-size:520px 260px;opacity:.9}
+.page.wide{grid-column:1/-1;border-radius:14px}
+.spread.single::before,.spread.single::after{display:none}
 
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:28px 0 8px}
-.stat{background:var(--panel);padding:14px 16px}
-.stat b{display:block;font-size:24px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.stat span{font-size:13px;color:var(--ink-3)}
-.status{font-size:12.5px;color:var(--ink-3);display:flex;align-items:center;gap:7px}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--ink-3)}
-.dot.live{background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.title{font:500 clamp(40px,6.4vw,92px)/.92 var(--display);letter-spacing:.02em;margin:0;text-transform:uppercase;color:var(--ink);font-variation-settings:"opsz" 96;text-wrap:balance}
+.h3,.endorse .n,.dp-head .t,.steps b,.how h3,.mark,.tally b{font-variation-settings:"opsz" 18}
+.lede,.body p,.how p,.steps p{text-wrap:pretty}
+.title b{font-weight:700}
+h1.title{font-size:min(13.2cqi,96px)}
+h2.title{font-size:min(clamp(36px,5vw,72px),14cqi)}
+.seal{position:absolute;top:clamp(22px,3vw,40px);right:clamp(22px,3vw,40px);width:clamp(70px,7vw,96px);color:var(--gold);filter:drop-shadow(0 1px 0 rgba(255,255,255,.35)) drop-shadow(0 -1px 0 rgba(0,0,0,.18))}
+.page.l h1.title{margin-top:clamp(76px,8.4vw,116px)}
+.issued{display:flex;gap:34px;margin-top:22px}
+.issued .val{font-size:15.5px}
+.lede{font-size:clamp(17px,1.6vw,20px);line-height:1.55;color:var(--ink-2);max-width:34ch;margin:22px 0 0}
+.lede b{color:var(--ink);font-weight:600}
+.body{color:var(--ink-2);max-width:62ch}
+.body p{margin:0 0 14px}
 
-section{margin:34px 0}
-section h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin:0 0 12px;font-weight:600}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.crest{position:absolute;right:-170px;bottom:-190px;width:440px;height:440px;color:var(--print);opacity:.4;pointer-events:none;z-index:-1}
+.endorse{list-style:none;margin:34px 0 0;padding:0;max-width:440px;border-top:1px solid var(--rule)}
+.endorse li{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--rule)}
+.endorse a{text-decoration:none}
+.endorse .n{font:700 18px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.endorse .d{color:var(--ink-2);font-size:14.5px}
+.endorse .s{font:500 11px/1 var(--mono);letter-spacing:.06em;padding:5px 7px;border-radius:3px;border:1.4px solid currentColor;transform:rotate(-3deg)}
+.endorse a:hover{color:var(--accent-text)}
 
-.result{padding:20px}
-.result .head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin-bottom:6px}
-.result .title{font-size:20px;font-weight:650;letter-spacing:-.01em;word-break:break-word}
-.result .addr{font-family:var(--mono);font-size:13px;color:var(--ink-2);word-break:break-all}
-.note{font-size:12.5px;color:var(--ink-3)}
-.verdict-line{display:flex;align-items:center;gap:12px;margin:16px 0 10px;flex-wrap:wrap}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:12.5px;font-weight:650;border:1px solid var(--line);background:var(--soft);white-space:nowrap}
-.pill.harm{background:color-mix(in srgb,var(--v-rug) 14%,var(--panel));border-color:color-mix(in srgb,var(--v-rug) 40%,var(--line));color:var(--v-rug)}
-.pill.safe{background:color-mix(in srgb,var(--v-safe) 14%,var(--panel));border-color:color-mix(in srgb,var(--v-safe) 40%,var(--line));color:var(--v-safe)}
-.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:var(--soft);min-width:80px}
-.bar i{display:block;height:100%}
-.bar i+i{box-shadow:-1px 0 0 var(--panel)}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink-2)}
-.legend span{display:inline-flex;align-items:center;gap:6px}
+/* ---------- data page ---------- */
+.dp-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:22px}
+.dp-head .t{font:700 15px/1.2 var(--display);letter-spacing:.22em;text-transform:uppercase}
+.dp-head .k{font:500 11px/1.4 var(--mono);color:var(--ink-3);text-align:right}
+.dp{display:grid;grid-template-columns:minmax(140px,190px) minmax(0,1fr);gap:24px}
+.slot{position:relative;aspect-ratio:7/9;border:1.5px solid var(--rule);border-radius:6px;background:
+  repeating-linear-gradient(135deg,var(--print-soft) 0 1px,transparent 1px 7px),color-mix(in srgb,var(--paper-2) 70%,transparent);
+  display:grid;place-items:center;overflow:hidden}
+.slot svg{width:62%;opacity:.55;color:var(--print)}
+.slot .ph{position:absolute;bottom:12px;left:10px;right:10px;text-align:center;font:500 11px/1.3 var(--mono);color:var(--ink-3);letter-spacing:.05em}
+.fields{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-content:start;min-width:0}
+.f label,.f .lbl{display:block;font:600 11.5px/1.25 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.f .val{font:500 17px/1.35 var(--sans);color:var(--ink);min-height:23px;word-break:break-word}
+.f .val.mono{font:500 13px/1.45 var(--mono)}
+.check{display:flex;gap:8px}
+.field-in{min-width:0;font:500 14px/1 var(--mono);color:var(--ink);background:color-mix(in srgb,var(--paper) 55%,#fff 45%);
+  border:1.5px solid var(--rule);border-radius:8px;padding:14px 13px;transition:border-color .2s,box-shadow .2s}
+.check .field-in{flex:1 1 0;width:0}
+:root[data-theme="dark"] .field-in{background:rgba(0,0,0,.18)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .field-in{background:rgba(0,0,0,.18)}}
+.field-in::placeholder{color:var(--ink-3)}
+.field-in:focus{outline:none;border-color:var(--burgundy);box-shadow:0 0 0 4px color-mix(in srgb,var(--burgundy) 18%,transparent)}
+.btn{font:600 15px/1 var(--sans);letter-spacing:.02em;border:0;border-radius:8px;padding:14px 20px;cursor:pointer;color:var(--burgundy-ink);background:var(--burgundy);
+  box-shadow:0 6px 14px -8px rgba(0,0,0,.45);transition:transform .15s var(--ease),filter .2s}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.55;cursor:progress}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--rule);box-shadow:none}
+.hint{font-size:13px;color:var(--ink-3);margin-top:7px}
+.res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.page-mrz{position:absolute;left:clamp(28px,4vw,56px);right:clamp(28px,4vw,56px);bottom:clamp(20px,3vw,36px);margin:0;color:var(--ink-3)}
+.page.r:has(.page-mrz){padding-bottom:clamp(110px,10vw,130px)}
+.mrz{margin-top:26px;padding:14px 0 2px;border-top:1px solid var(--rule);font:500 clamp(10px,1.02vw,13.5px)/1.7 var(--mono);letter-spacing:.12em;color:var(--ink);white-space:pre;overflow:hidden;min-height:3.6em}
+
+.holo{position:absolute;inset:0;pointer-events:none;z-index:1;border-radius:inherit;opacity:var(--holo-o);mix-blend-mode:var(--holo-blend);
+  background:conic-gradient(from calc(var(--hx,.3)*360deg) at calc(var(--hx,.3)*100%) calc(var(--hy,.4)*100%),#ff6fb5,#ffd36b,#8dff9b,#6be6ff,#9a8cff,#ff6fb5);
+  -webkit-mask:var(--holo-mask) 0 0/300px 150px;mask:var(--holo-mask) 0 0/300px 150px;transition:opacity .4s}
+.ovd{position:absolute;right:-16px;bottom:-16px;width:66px;height:66px;border-radius:50%;z-index:1;pointer-events:none;
+  background:conic-gradient(from calc(var(--hx,.3)*540deg),#ff6fb5,#ffd36b,#8dff9b,#6be6ff,#9a8cff,#ff6fb5);
+  -webkit-mask:var(--ovd-mask) center/100%;mask:var(--ovd-mask) center/100%;opacity:var(--ovd-o);mix-blend-mode:var(--ovd-blend);filter:saturate(var(--ovd-sat))}
+.perf{position:absolute;right:13px;top:50%;width:200px;height:30px;margin-top:-15px;transform:rotate(90deg);transform-origin:center;translate:85px 0;
+  color:var(--hole);pointer-events:none;z-index:1}
+.perf svg{display:block;width:100%;height:100%}
+.perf circle{fill:var(--hole);stroke:var(--hole-rim);stroke-width:.45}
+
+/* ---------- rubber stamps ---------- */
+.stamp{--c:var(--st-violet);display:inline-grid;place-items:center;gap:2px;text-align:center;color:var(--c);border:3px double var(--c);border-radius:10px;padding:9px 16px 8px;
+  font:700 15px/1.1 var(--sans);letter-spacing:.14em;text-transform:uppercase;transform:rotate(var(--rot,-6deg));
+  -webkit-mask:var(--grain);mask:var(--grain);-webkit-mask-size:180px;mask-size:180px;filter:url(#rubber);opacity:.9;mix-blend-mode:multiply}
+:root[data-theme="dark"] .stamp{mix-blend-mode:normal}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .stamp{mix-blend-mode:normal}}
+.stamp small{font:500 10.5px/1.2 var(--mono);letter-spacing:.08em}
+.stamp.big{font-size:clamp(20px,2.4vw,28px);padding:14px 22px 12px;border-width:5px}
+.stamp.round{border-radius:50%;aspect-ratio:1;padding:22px}
+.stamp.harm{--c:var(--st-red)} .stamp.safe{--c:var(--st-green)} .stamp.none{--c:var(--st-blue)} .stamp.pend{--c:var(--st-violet)}
+.slotwrap{position:relative;align-self:start}
+.stamp-zone{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:2;width:118%;display:grid;place-items:center}
+.slotwrap .stamp.big{font-size:clamp(15px,1.45vw,20px);padding:11px 12px 9px;border-width:4px;max-width:100%;opacity:1;-webkit-mask:none;mask:none}
+.slot.stamped .ph,.slot.stamped svg{visibility:hidden}
+.f.full{grid-column:1/-1}
+.pressed{animation:press .62s var(--ease) both}
+@keyframes press{0%{opacity:0;transform:rotate(var(--rot,-6deg)) scale(1.7)}55%{opacity:.95;transform:rotate(var(--rot,-6deg)) scale(.94)}100%{opacity:1;transform:rotate(var(--rot,-6deg)) scale(1)}}
+
+/* ---------- verdict bar & ledger ---------- */
+.bar-v{display:flex;height:9px;border-radius:2px;overflow:hidden;background:var(--print-soft);min-width:90px}
+.bar-v i{display:block;height:100%}
+.bar-v i+i{box-shadow:-1.5px 0 0 var(--paper)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
 .sw{width:9px;height:9px;border-radius:2px;display:inline-block}
-.empty{padding:16px;border-radius:10px;background:var(--warn-bg);color:var(--warn-ink);font-size:14px}
-.resp{margin-top:14px;padding:12px 14px;border-left:3px solid var(--v-phishing);background:var(--soft);border-radius:0 8px 8px 0;font-size:13.5px}
-
-table{width:100%;border-collapse:collapse;font-size:14px}
-th{text-align:left;font-weight:600;font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;border-bottom:1px solid var(--line)}
-td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
-tr:last-child td{border-bottom:0}
-td.num{text-align:right;font-variant-numeric:tabular-nums}
-tr.click{cursor:pointer}
-tr.click:hover td{background:var(--soft)}
-.tname{font-weight:600}
-.tsub{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
-.tablewrap{overflow-x:auto}
-
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{text-align:left;font:600 11.5px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);padding:10px 12px;border-bottom:1.5px solid var(--ink)}
+td{padding:11px 12px;border-bottom:1px solid var(--rule);vertical-align:middle;font-variant-numeric:tabular-nums}
+td.num,th.num{text-align:right}
+tr.go{cursor:pointer;transition:background .15s}
+tr.go:hover td{background:var(--print-soft)}
+.tn{font-weight:600}
+.ts{font:400 11.5px/1.4 var(--mono);color:var(--ink-3)}
+.scroll-x{overflow-x:auto}
+.ink{font:700 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:4px 7px 3px;border-radius:4px;border:1.5px solid currentColor;white-space:nowrap;display:inline-block;transform:rotate(-2deg)}
 .feed{list-style:none;margin:0;padding:0}
-.feed li{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);font-size:14px}
-.feed li:last-child{border-bottom:0}
-.feed .when{color:var(--ink-3);font-size:12.5px;white-space:nowrap}
-.feed .what{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tag{font-size:11.5px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:5px;color:#fff;white-space:nowrap}
+.feed li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+.feed .w{color:var(--ink-3);font-size:12.5px;white-space:nowrap;text-decoration:none}
+.feed .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.muted{color:var(--ink-3)}
+.note{font-size:13px;color:var(--ink-3);max-width:62ch}
+.empty{padding:14px 16px;border:1.5px dashed var(--rule);border-radius:8px;color:var(--ink-2);font-size:14.5px}
+.split{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,56px);margin-top:30px}
+.h3{font:700 14px/1.2 var(--display);letter-spacing:.2em;text-transform:uppercase;margin:0 0 12px;color:var(--ink)}
+.ledger{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 24px;margin:28px 0 4px;padding:14px 0;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule);max-width:760px}
+.ledger .val{font:500 17px/1.3 var(--mono)}
+.page-stamp{position:absolute;top:clamp(24px,4vw,52px);right:clamp(24px,5vw,72px);font-size:15px}
+.live{display:inline-flex;align-items:center;gap:7px;font:500 11px/1 var(--mono);color:var(--ink-3);white-space:nowrap}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--ink-3)}
+.live.on i{background:var(--st-green);box-shadow:0 0 0 3px color-mix(in srgb,var(--st-green) 25%,transparent)}
 
-.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:20px}
-.steps{counter-reset:s;list-style:none;margin:0;padding:0}
-.steps li{counter-increment:s;position:relative;padding:14px 16px 14px 52px;border-bottom:1px solid var(--line)}
-.steps li:last-child{border-bottom:0}
-.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:24px;height:24px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:12.5px;font-weight:700;color:var(--ink-2)}
-.steps b{display:block;margin-bottom:2px}
-.steps p{margin:0;color:var(--ink-2);font-size:14px}
-pre{margin:8px 0 0;padding:10px 12px;background:var(--soft);border-radius:8px;overflow-x:auto;font:12.5px/1.5 var(--mono)}
-.muted{color:var(--ink-2)}
-.small{font-size:13px}
-footer{border-top:1px solid var(--line);margin-top:48px;padding:22px 0 40px;font-size:13px;color:var(--ink-3)}
-footer p{margin:4px 0;max-width:80ch}
-.hide{display:none!important}
+/* ---------- sift ---------- */
+.sift textarea{width:100%;min-height:170px;resize:vertical;line-height:1.6;font-size:12.5px}
+.row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:12px}
+.file{font-size:13.5px;color:var(--ink-2)}
+.file input{font:13px var(--sans);color:var(--ink-2);max-width:100%}
+.file input::file-selector-button{font:600 13px var(--sans);color:var(--ink);background:transparent;border:1.5px solid var(--rule);border-radius:6px;padding:7px 10px;margin-right:8px;cursor:pointer}
+.progress{height:6px;border-radius:3px;background:var(--print-soft);overflow:hidden;margin-top:14px}
+.progress i{display:block;height:100%;width:0;background:var(--burgundy);transition:width .25s var(--ease)}
+.tally{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule);margin:18px 0 6px}
+.tally div{padding:12px 10px 10px 0}
+.tally b{display:block;font:700 30px/1 var(--display);letter-spacing:.01em}
+.tally span{font:600 11.5px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.yes{color:var(--st-green);font-weight:700}
+.no{color:var(--st-red);font-weight:700}
+.dup{color:var(--st-violet);font-weight:600}
 
-@media (max-width:760px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .cols{grid-template-columns:1fr}
-  .hide-sm{display:none}
-  form.search{flex-direction:column}
-  nav.links{gap:12px}
+/* ---------- errands ---------- */
+.steps{list-style:none;margin:6px 0 0;padding:0}
+.steps li{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:15px 0;border-bottom:1px solid var(--rule)}
+.steps li:first-child{border-top:1.5px solid var(--ink)}
+.steps b{font:700 15px/1.3 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.steps p{margin:0;color:var(--ink-2)}
+.permit{display:grid;gap:16px;align-content:start}
+.permit .f .val{font-size:15.5px}
+
+/* ---------- how ---------- */
+pre{margin:8px 0 0;padding:11px 13px;border-radius:6px;background:color-mix(in srgb,var(--ink) 7%,transparent);overflow-x:auto;font:500 12px/1.6 var(--mono);color:var(--ink)}
+.how{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(24px,4vw,56px)}
+.how div{padding:18px 0;border-top:1px solid var(--rule);min-width:0}
+.how h3{margin:0 0 6px;font:700 15px/1.3 var(--display);letter-spacing:.14em;text-transform:uppercase}
+.how p{margin:0;color:var(--ink-2);font-size:15px}
+
+/* ---------- back cover ---------- */
+footer{color:#C7D3E0;padding:46px 0 70px;font-size:14px}
+footer .mark{margin-bottom:18px}
+footer p{max-width:76ch;margin:6px 0;color:#AFC0D2}
+footer a{color:#E3EAF2}
+
+/* ---------- motion: leaves turn in ---------- */
+.motion .leaf{transition:transform 1s var(--ease),opacity .9s var(--ease);transform-origin:50% 0}
+.motion .leaf.single.pre{opacity:.3;transform:perspective(1600px) rotateX(6deg) translateY(28px)}
+.motion .leaf:not(.single).pre{opacity:.55;transform:translateY(16px)}
+.motion .leaf:not(.single) .page.r{transition:transform 1.25s var(--ease) .08s,opacity .5s var(--ease) .08s;transform-origin:0 50%;backface-visibility:hidden}
+.motion .leaf:not(.single).pre .page.r{transform:perspective(2400px) rotateY(-84deg);opacity:0}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .motion .leaf,.motion .leaf.pre,.motion .leaf .page.r,.motion .leaf.pre .page.r{transition:none;transform:none;opacity:1;filter:none}
+  .pressed{animation:none}
+}
+
+/* ---------- responsive: on phones the passport is read one page at a time ---------- */
+@media (max-width:900px){
+  .spread{grid-template-columns:1fr}
+  .spread::before,.spread::after{display:none}
+  .page.l,.page.r{border-radius:0}
+  .spread>.page:first-child{border-radius:14px 14px 0 0}
+  .spread>.page:last-child{border-radius:0 0 14px 14px}
+  .spread>.page+.page{border-top:1.5px dashed var(--stitch)}
+  .hero .page.r{order:-1;border-radius:14px 14px 0 0;border-top:0}
+  .hero .page.l{border-radius:0 0 14px 14px;border-top:1.5px dashed var(--stitch)}
+  .split,.how{grid-template-columns:1fr}
+  .motion .leaf:not(.single) .page.r{transform-origin:50% 0}
+  .motion .leaf:not(.single).pre .page.r{transform:perspective(2000px) rotateX(-70deg)}
+  .bar nav{gap:16px;font-size:13.5px}
+  .bar nav .hide-sm{display:none}
+}
+@media (max-width:560px){
+  .wrap{padding:0 14px}
+  .spread{margin:30px 6px;box-shadow:0 1px 0 0 var(--edge),0 3px 0 0 var(--edge-2),0 0 0 7px var(--board),0 24px 50px -16px rgba(0,0,0,.6)}
+  .spread>.tool{inset:-4px;border-radius:17px}
+  .spread>.tool::after{display:none}
+  .perf{top:7px;right:auto;left:50%;width:132px;height:20px;margin:0;transform:none;translate:-50% 0}
+  .page.r,.page.wide{padding-top:40px}
+  .dp-head{flex-direction:column;gap:8px}
+  .dp-head .t{letter-spacing:.16em}
+  .slotwrap{padding-top:62px}
+  .ovd{width:54px;height:54px;right:6px;top:0;bottom:auto}
+  .dp{grid-template-columns:1fr}
+  .slot{display:none}
+  .check{flex-direction:column}
+  .check .field-in{flex:none;width:100%}
+  .tally{grid-template-columns:repeat(2,1fr)}
+  .steps li{grid-template-columns:1fr;gap:4px}
+  .slotwrap{order:2}
+  .stamp-zone{position:static;transform:none;margin:6px 0 0;width:100%;justify-items:center}
+  .slotwrap .stamp.big{font-size:17px;--rot:-4deg!important;max-width:92%}
+  .ledger{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .page-stamp{position:static;display:inline-grid;margin-bottom:14px}
+  .issued{gap:22px}
+  .page-mrz{font-size:11px;letter-spacing:0}
+  .mrz{font-size:11px;letter-spacing:0}
+  .crest{width:300px;height:300px;right:-90px;bottom:-90px}
+
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <a class="brand" href="./">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 30V17M16 17 7 6M16 17l9-11" stroke="var(--accent)" stroke-width="3.6" stroke-linecap="round" fill="none"/><circle cx="7" cy="6" r="3.2" fill="var(--accent)"/><circle cx="25" cy="6" r="3.2" fill="var(--accent)"/></svg>
-      Antibody
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rubber" x="-10%" y="-20%" width="120%" height="140%"><feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="2" seed="3" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="2.6"/></filter></svg>
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Vouchsafe home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width=".7" stroke-dasharray="1.2 1.6"/><path d="M10.5 10.5l5.5 11.5 5.5-11.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      VOUCHSAFE
     </a>
-    <nav class="links">
-      <a href="#how">How to report</a>
-      <a id="contractLink" href="#" target="_blank" rel="noopener">Contract</a>
-      <a href="https://github.com/blocknbull/antibody" target="_blank" rel="noopener">GitHub</a>
+    <nav aria-label="Products">
+      <a href="#shield">Shield</a><a href="#sift">Sift</a><a href="#errands">Errands</a><a class="hide-sm" href="https://github.com/blocknbull/vouchsafe" target="_blank" rel="noopener">GitHub</a>
     </nav>
-  </header>
-
-  <div class="hero">
-    <h1>Check a contract before you sign.</h1>
-    <p>Antibody is a scam registry for BNB Chain where every Agent ID holds one vote. Agent IDs can't be transferred and each user gets one, so a hundred reports means a hundred different users, not a hundred throwaway wallets.</p>
-    <form class="search" id="search" autocomplete="off">
-      <input id="q" placeholder="Paste a contract or wallet address (0x…)" spellcheck="false" aria-label="Address to check">
-      <button class="btn" type="submit">Check</button>
-    </form>
-    <div class="hint">Reads the chain directly. Free, and nothing to sign.</div>
   </div>
+</header>
 
-  <div class="stats" aria-live="polite">
-    <div class="stat"><b id="sReports">–</b><span>reports filed</span></div>
-    <div class="stat"><b id="sIds">–</b><span>Agent IDs reporting</span></div>
-    <div class="stat"><b id="sTargets">–</b><span>addresses reported</span></div>
-    <div class="stat"><b id="sLinks">–</b><span>linked wallets</span></div>
-  </div>
-  <div class="status"><span class="dot" id="dot"></span><span id="statusText">Loading…</span></div>
-
-  <section id="resultSec" class="hide">
-    <h2>Result</h2>
-    <div class="panel result" id="result"></div>
-  </section>
-
-  <section>
-    <h2>Most reported</h2>
-    <div class="panel tablewrap">
-      <table>
-        <thead><tr><th>Address</th><th style="width:34%">Votes</th><th class="num">Total</th><th class="hide-sm">Agreement</th></tr></thead>
-        <tbody id="topBody"></tbody>
-      </table>
-    </div>
-    <div class="legend" id="legend" style="margin-top:10px"></div>
-  </section>
-
-  <div class="cols">
-    <section>
-      <h2>Latest reports</h2>
-      <div class="panel"><ul class="feed" id="feed"></ul></div>
-    </section>
-    <section>
-      <h2>Reporters</h2>
-      <div class="panel tablewrap">
-        <table>
-          <thead><tr><th>Agent ID wallet</th><th class="num">Votes</th><th class="num">Score</th></tr></thead>
-          <tbody id="repBody"></tbody>
-        </table>
+<main class="wrap" id="top">
+  <section class="spread hero" aria-label="Vouchsafe">
+    <span class="tool" aria-hidden="true"></span>
+    <div class="page l">
+      <svg class="crest" id="crest" viewBox="-210 -210 420 420" aria-hidden="true"></svg>
+      <svg class="seal" viewBox="0 0 120 120" role="img" aria-label="Vouchsafe crest">
+        <defs><path id="sealRing" d="M60 60 m-45 0 a45 45 0 1 1 90 0 a45 45 0 1 1 -90 0"/></defs>
+        <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width=".6"/>
+        <text font-size="8.6" letter-spacing="2.4" fill="currentColor" font-family="Schibsted Grotesk, sans-serif" font-weight="600"><textPath href="#sealRing">VOUCHSAFE · BNB CHAIN · ONE AGENT ID · ONE VOICE ·</textPath></text>
+        <circle cx="60" cy="60" r="33" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <g id="sealRose" fill="none" stroke="currentColor" stroke-width=".45"></g>
+        <path d="M47 46l13 28 13-28" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+      </svg>
+      <h1 class="title"><b>Vouch</b>safe</h1>
+      <p class="lede">Trust tools where <b>one Agent ID is one voice</b>. Each Binance user can hold only one, and it can't be sold or copied, so a thousand stamps here means a thousand real people, not a thousand fresh wallets.</p>
+      <div class="issued">
+        <div class="f"><span class="lbl">Issuing authority</span><div class="val">BNB Chain</div></div>
+        <div class="f"><span class="lbl">Valid for</span><div class="val">Every Agent ID holder</div></div>
       </div>
-      <p class="note">Score v1: +1 for each settled address you called the same way as the majority (SAFE vs harmful, at least 3 votes and two thirds agreeing), −1 for each you called the other way. It is advisory only. Checks against what then happens on-chain are planned.</p>
-    </section>
-  </div>
+      <ul class="endorse" aria-label="Products">
+        <li><a class="n" href="#shield">Shield</a><span class="d">Check a contract before you sign</span><span class="s" style="color:var(--st-green)">LIVE</span></li>
+        <li><a class="n" href="#sift">Sift</a><span class="d">Filter an airdrop list to real people</span><span class="s" style="color:var(--st-green)">LIVE</span></li>
+        <li><a class="n" href="#errands">Errands</a><span class="d">Hire an agent, payment held in escrow</span><span class="s" style="color:var(--st-violet)">IN BUILD</span></li>
+      </ul>
+    </div>
 
-  <section id="how">
-    <h2>How to report</h2>
-    <div class="panel">
-      <ol class="steps">
-        <li><b>Hold an Agent ID</b><p>Claim your <code>name.ai</code> in the Binance app: Wallet, then the Agent ID banner. One per user, kept in your Agentic Wallet.</p></li>
-        <li><b>Let your agent check before signing</b><p>Install the Antibody skill alongside the Binance Agentic Wallet skill. Before any contract call, your agent reads the votes and tells you what it found. Reading is free.</p>
-          <pre>python3 cli/antibody.py check 0xContract</pre></li>
-        <li><b>Report what your preview revealed</b><p>If a preview shows a honeypot, drainer, rug or phishing contract, your agent offers to report it. You confirm in your wallet. Each report is one transaction, about $0.01 of gas.</p>
-          <pre>python3 cli/antibody.py report 0xContract honeypot --evidence preview.json</pre></li>
-        <li><b>Optional: link an everyday wallet</b><p>An Agentic Wallet can't connect to dApps. Agent Link lets one ordinary wallet act for your Agent ID. It needs a signature from each side, either side can end it, and it never gives you a second vote.</p></li>
+    <div class="page r" id="check">
+      <div class="holo" aria-hidden="true"></div>
+      <div class="dp-head">
+        <span class="t">Shield · Data page</span>
+        <span class="k"><span class="live" id="live"><i></i><span id="liveText">connecting</span></span></span>
+      </div>
+      <div class="dp">
+        <div class="slotwrap"><div class="slot" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="24" r="11" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 56c3-11 11-17 20-17s17 6 20 17" fill="none" stroke="currentColor" stroke-width="2"/><path d="M45 9l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="ph">ADDRESS<br>GOES HERE</span>
+        </div><span class="ovd" aria-hidden="true"></span><div class="stamp-zone" id="stampZone" aria-live="polite"></div></div>
+        <form class="fields" id="search" autocomplete="off">
+          <div class="f">
+            <label for="q">1 · Address to check</label>
+            <div class="check">
+              <input class="field-in" id="q" placeholder="0x… contract or wallet" spellcheck="false">
+              <button class="btn" type="submit" id="checkBtn">Check</button>
+            </div>
+            <div class="hint">A free read from the chain. Nothing to sign.</div>
+          </div>
+          <div class="res">
+            <div class="f"><span class="lbl">2 · Name on contract</span><div class="val" id="fName">—</div></div>
+            <div class="f"><span class="lbl">3 · Agent ID votes</span><div class="val" id="fVotes">—</div></div>
+            <div class="f full"><span class="lbl">4 · Standing</span><div class="val" id="fStanding">Awaiting check</div></div>
+            <div class="f"><span class="lbl">5 · Read at block</span><div class="val mono" id="fBlock">—</div></div>
+          </div>
+        </form>
+      </div>
+      <div class="mrz" id="mrz" aria-label="Machine-readable summary"></div>
+    </div>
+  </section>
+
+  <section class="spread single leaf" id="shield" aria-labelledby="shieldT">
+    <span class="tool" aria-hidden="true"></span>
+    <div class="page wide">
+      <span class="stamp round safe page-stamp" style="--rot:9deg">ONE<small>AGENT ID</small>ONE VOTE</span>
+      <h2 class="title" id="shieldT"><b>Shield</b></h2>
+      <p class="lede" style="max-width:54ch">A scam registry where every Agent ID holds one vote per address: <b>safe, honeypot, rug, drainer or phishing</b>. Your agent reads it before you sign, and offers to file a report when your wallet's preview reveals something wrong.</p>
+      <div class="ledger" aria-live="polite">
+        <div class="f"><span class="lbl">Reports filed</span><div class="val" id="sReports">–</div></div>
+        <div class="f"><span class="lbl">Agent IDs reporting</span><div class="val" id="sIds">–</div></div>
+        <div class="f"><span class="lbl">Addresses reported</span><div class="val" id="sTargets">–</div></div>
+        <div class="f"><span class="lbl">Linked wallets</span><div class="val" id="sLinks">–</div></div>
+      </div>
+      <div class="split">
+        <div>
+          <h3 class="h3">Most reported</h3>
+          <div class="scroll-x"><table>
+            <thead><tr><th>Address</th><th style="width:36%">Votes</th><th class="num">Total</th></tr></thead>
+            <tbody id="topBody"></tbody>
+          </table></div>
+          <div class="legend" id="legend" style="margin-top:12px"></div>
+          <p class="note" style="margin-top:22px">Score: +1 for each settled address you called the same way as the majority (safe vs harmful, at least 3 votes, two thirds agreeing), −1 the other way. Advisory only.</p>
+        </div>
+        <div>
+          <h3 class="h3">Latest stamps</h3>
+          <ul class="feed" id="feed"></ul>
+          <h3 class="h3" style="margin-top:30px">Reporters</h3>
+          <div class="scroll-x"><table>
+            <thead><tr><th>Agent ID wallet</th><th class="num">Votes</th><th class="num">Score</th></tr></thead>
+            <tbody id="repBody"></tbody>
+          </table></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="spread leaf" id="sift" aria-labelledby="siftT">
+    <span class="tool" aria-hidden="true"></span>
+    <div class="page l">
+      <h2 class="title" id="siftT"><b>Sift</b></h2>
+      <p class="lede">Airdrops get farmed by people running hundreds of wallets. Sift tells you, for every address on your list, one thing: <b>is a real Agent ID behind it?</b></p>
+      <div class="body" style="margin-top:22px">
+        <p>Paste your claim list or drop a CSV. Sift reads the chain from your browser and stamps each row <span class="yes">Backed</span> or <span class="no">Not backed</span>, and marks <span class="dup">Same holder</span> when two addresses on your list belong to one Agent ID (the holder and their linked wallet).</p>
+        <p>It answers yes or no, never who. No names, nothing uploaded to us, and it's free.</p>
+      </div>
+      <div class="stamp round pend" style="--rot:-11deg;margin-top:18px">ONE<small>AGENT ID</small>ONE CLAIM</div>
+    </div>
+    <div class="page r sift">
+      <div class="f"><label for="list">Claim list · one address per line, or any text containing addresses</label></div>
+      <textarea class="field-in" id="list" spellcheck="false" placeholder="0x…&#10;0x…&#10;0x…"></textarea>
+      <div class="row">
+        <button class="btn" id="siftBtn" type="button">Sift the list</button>
+        <label class="file">or a file <input type="file" id="file" accept=".csv,.txt,text/csv,text/plain"></label>
+      </div>
+      <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+      <div id="siftOut" aria-live="polite"><p class="note" style="margin-top:12px">Up to 20,000 addresses. About 15 seconds for 10,000.</p></div>
+      <div class="mrz page-mrz" aria-hidden="true">V&lt;BSCSIFT&lt;&lt;ONE&lt;AGENT&lt;ID&lt;ONE&lt;CLAIM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+YES&lt;OR&lt;NO&lt;NEVER&lt;WHO&lt;&lt;FREE&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+    </div>
+  </section>
+
+  <section class="spread leaf" id="errands" aria-labelledby="errT">
+    <span class="tool" aria-hidden="true"></span>
+    <div class="page l">
+      <h2 class="title" id="errT"><b>Errands</b></h2>
+      <p class="lede">A job board for agents. Someone's agent posts a task and locks the payment in escrow. Another Agent ID holder's agent does it. Every finished errand builds a record that <b>belongs to a real person</b> and can't be bought.</p>
+      <ol class="steps" style="margin-top:28px">
+        <li><b>Post</b><p>The poster's agent describes the task, sets a deadline and locks the reward in BNB. The poster can cancel for a full refund until someone takes it.</p></li>
+        <li><b>Take</b><p>One Agent ID holder accepts, never the poster's own identity.</p></li>
+        <li><b>Deliver</b><p>The worker submits a hash of the result before the deadline.</p></li>
+        <li><b>Release</b><p>The poster releases payment. If the poster goes silent after delivery, the worker can claim it after a review window. No delivery by the deadline, and the poster takes the refund.</p></li>
       </ol>
     </div>
-    <p class="note">Antibody never asks for a pairing code, seed phrase or key, keeps no sessions, and can't move funds. Every report is signed by you.</p>
+    <div class="page r">
+      <div class="dp-head"><span class="t">Work permit</span><span class="k">Not yet issued</span></div>
+      <div class="permit">
+        <div class="f"><span class="lbl">Status</span><div class="val">In build. Escrow contract in testing; live before 9 December 2026.</div></div>
+        <div class="f"><span class="lbl">Who can take an errand</span><div class="val">Any Agent ID holder, or their linked wallet acting for them</div></div>
+        <div class="f"><span class="lbl">Where the money can go</span><div class="val">Only to the worker, or back to the poster. No admin, no fee, no token.</div></div>
+        <div class="f"><span class="lbl">Who signs</span><div class="val">You, in your own wallet, for every post, take, delivery and release</div></div>
+      </div>
+      <div style="margin-top:34px"><span class="stamp big pend" style="--rot:-8deg">Pending issue<small>ESCROW CONTRACT IN TESTING</small></span></div>
+      <div class="mrz page-mrz" aria-hidden="true">W&lt;BSCERRANDS&lt;&lt;POST&lt;TAKE&lt;DELIVER&lt;RELEASE&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+ESCROW&lt;&lt;WORKER&lt;OR&lt;POSTER&lt;ONLY&lt;&lt;NO&lt;FEE&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+    </div>
   </section>
 
-  <footer>
-    <p><b>Open source, no owner.</b> The contract has no admin, upgrade, fee, token or withdrawal. It stores votes and nothing else. <a id="footContract" href="#" target="_blank" rel="noopener">Verified source</a> · <a href="https://github.com/blocknbull/antibody" target="_blank" rel="noopener">GitHub</a></p>
-    <p>Votes are opinions from Agent ID holders, not audits. "No reports" doesn't mean safe. Token names shown here come from the contracts themselves and may be lies. Always read your wallet's preview.</p>
-  </footer>
-</div>
+  <section class="spread single leaf" id="how" aria-labelledby="howT">
+    <span class="tool" aria-hidden="true"></span>
+    <div class="page wide">
+      <h2 class="title" id="howT" style="font-size:clamp(30px,4vw,54px)">Notes for the <b>holder</b></h2>
+      <div class="how" style="margin-top:26px">
+        <div><h3>Get your Agent ID</h3><p>In the Binance app: Wallet, then the Agent ID banner. One per user, kept in your Agentic Wallet.</p></div>
+        <div><h3>Check before signing</h3><p>Install the Vouchsafe skill next to the Binance Agentic Wallet skill. Your agent reads Shield before every contract call and tells you what it found.</p><pre>python3 cli/vouchsafe.py check 0xContract</pre></div>
+        <div><h3>Report what your preview showed</h3><p>Saw a honeypot or drainer in a preview? Your agent offers to report it and you confirm in your wallet. One report, one transaction, about $0.01 of gas.</p><pre>python3 cli/vouchsafe.py report 0xContract honeypot --evidence preview.json</pre></div>
+        <div><h3>Link an everyday wallet</h3><p>Agentic Wallets can't connect to dApps. Agent Link lets one ordinary wallet act for your Agent ID: both sides sign, either side can end it, and it never adds a second vote.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Back to top"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 10.5l5.5 11.5 5.5-11.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>VOUCHSAFE</a>
+    <p><b>Open source, no owner.</b> The Shield contract has no admin, upgrade, fee, token or withdrawal, and stores votes and nothing else. <a id="footContract" href="#" target="_blank" rel="noopener">Verified source</a> · <a href="https://github.com/blocknbull/vouchsafe" target="_blank" rel="noopener">GitHub</a></p>
+    <p>Vouchsafe never asks for a pairing code, seed phrase or key, keeps no sessions, and signs nothing for you. Votes are opinions from Agent ID holders, not audits; no reports doesn't mean safe, and names shown here come from the contracts themselves. Not affiliated with Binance.</p>
+  </div>
+</footer>
 
 <script>
 "use strict";
-// ---------------------------------------------------------------- config
-const CFG = {
-  contract: "0x81f1a94ad7e4d6f9a8c349f21e4749d694751f5b",
-  deployedBlock: 134704540,
-  rpc: "https://bsc-rpc.publicnode.com",
-  explorer: "https://bscscan.com",
-  data: "data.json",
-};
-// Overrides are honoured only on a local preview, so a shared link can never point this page at another contract.
+const CFG = { contract: "0x81f1a94ad7e4d6f9a8c349f21e4749d694751f5b", deployedBlock: 134704540,
+  rpc: "https://bsc-rpc.publicnode.com", explorer: "https://bscscan.com", data: "data.json" };
+// Overrides only on a local preview, so a shared link can never point this page at another contract.
 if (["localhost", "127.0.0.1"].includes(location.hostname)) {
   const q = new URLSearchParams(location.search);
   for (const k of ["contract", "rpc", "data", "explorer", "deployedBlock"]) if (q.get(k)) CFG[k] = k === "deployedBlock" ? +q.get(k) : q.get(k).toLowerCase();
 }
-
 const VERDICTS = ["NONE", "SAFE", "HONEYPOT", "RUG", "DRAINER", "PHISHING"];
 const VCOLOR = { SAFE: "--v-safe", HONEYPOT: "--v-honeypot", RUG: "--v-rug", DRAINER: "--v-drainer", PHISHING: "--v-phishing" };
 const T = {
@@ -234,9 +497,10 @@ const T = {
   "0x5febe1b9e375a634d9d565149e636879057714c557b8c78aab7cccae8cf48e48": "linked",
   "0x2907c66279ef6379e65c015c50c76fa0554a6bd8cd1c5614353d64517e279e14": "unlinked",
 };
+const SEL = { riskOf: "0x9192724e", identityOf: "0xc6345626", name: "0x06fdde03", symbol: "0x95d89b41" };
 const SPAN = 50000;
+const ADDR_RE = /^0x[0-9a-fA-F]{40}$/;
 
-// ---------------------------------------------------------------- helpers
 const $ = (id) => document.getElementById(id);
 function el(tag, attrs = {}, ...kids) {
   const n = document.createElement(tag);
@@ -248,22 +512,22 @@ function el(tag, attrs = {}, ...kids) {
   return n;
 }
 const short = (a) => a.slice(0, 6) + "…" + a.slice(-4);
-const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 const link = (href, text, cls) => el("a", { href, target: "_blank", rel: "noopener", class: cls || "" }, text);
 const addrLink = (a) => link(`${CFG.explorer}/address/${a}`, short(a), "mono");
 function ago(ts) {
   if (!ts) return "";
   const s = Math.max(0, Date.now() / 1000 - ts);
-  if (s < 90) return "just now";
-  if (s < 5400) return Math.round(s / 60) + " min ago";
-  if (s < 129600) return Math.round(s / 3600) + " h ago";
-  return Math.round(s / 86400) + " d ago";
+  if (s < 90) return "just now"; if (s < 5400) return Math.round(s / 60) + " min ago";
+  if (s < 129600) return Math.round(s / 3600) + " h ago"; return Math.round(s / 86400) + " d ago";
 }
 let rpcId = 0;
+async function post(body) {
+  const r = await fetch(CFG.rpc, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+  if (!r.ok) throw new Error("RPC " + r.status);
+  return r.json();
+}
 async function rpc(method, params) {
-  const r = await fetch(CFG.rpc, { method: "POST", headers: { "content-type": "application/json" },
-    body: JSON.stringify({ jsonrpc: "2.0", id: ++rpcId, method, params }) });
-  const d = await r.json();
+  const d = await post({ jsonrpc: "2.0", id: ++rpcId, method, params });
   if (d.error) throw new Error(d.error.message || "rpc error");
   return d.result;
 }
@@ -271,41 +535,129 @@ const word = (a) => a.toLowerCase().replace(/^0x/, "").padStart(64, "0");
 const topicAddr = (t) => "0x" + t.slice(-40).toLowerCase();
 function decodeString(ret) {
   try {
-    const h = ret.slice(2); if (h.length < 64) return null;
-    let bytes;
-    if (h.length >= 128) {
-      const off = parseInt(h.slice(0, 64), 16) * 2, n = parseInt(h.slice(off, off + 64), 16);
-      if (n > 256) return null;
-      bytes = h.slice(off + 64, off + 64 + n * 2);
-    } else bytes = h.slice(0, 64).replace(/(00)+$/, "");
-    const s = new TextDecoder().decode(Uint8Array.from((bytes.match(/../g) || []).map((x) => parseInt(x, 16))));
-    const clean = [...s].filter((c) => c >= " " && c !== "\u007f").join("").trim();
-    return clean.slice(0, 40) || null;
+    const h = (ret || "").slice(2); if (h.length < 64) return null;
+    let hex;
+    if (h.length >= 128) { const off = parseInt(h.slice(0, 64), 16) * 2, n = parseInt(h.slice(off, off + 64), 16); if (!(n >= 0 && n <= 256)) return null; hex = h.slice(off + 64, off + 64 + n * 2); }
+    else hex = h.slice(0, 64).replace(/(00)+$/, "");
+    const s = new TextDecoder().decode(Uint8Array.from((hex.match(/../g) || []).map((x) => parseInt(x, 16))));
+    return [...s].filter((c) => c >= " " && c !== "\u007f" && c !== "�").join("").trim().slice(0, 40) || null;
   } catch { return null; }
 }
 
-// ---------------------------------------------------------------- state
-let events = [], labels = {}, times = {}, lastBlock = CFG.deployedBlock - 1, model = null;
+// ---------------------------------------------------------------- generative security print
+function guillochePattern() {
+  const w = 520, h = 260, lines = [];
+  for (let i = 0; i < 14; i++) {
+    let d = "";
+    for (let x = 0; x <= w; x += 4) {
+      const t = x / w * Math.PI * 2;
+      const y = h / 2 + Math.sin(t * 2 + i * .45) * (h * .32) * Math.cos(t + i * .2) + Math.sin(t * 6 + i) * 7;
+      d += (x ? "L" : "M") + x + " " + y.toFixed(1);
+    }
+    lines.push(`<path d="${d}"/>`);
+  }
+  const color = getComputedStyle(document.documentElement).getPropertyValue("--print").trim() || "#3E8E8A";
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><g fill="none" stroke="${color}" stroke-opacity=".16" stroke-width=".7">${lines.join("")}</g></svg>`;
+  document.documentElement.style.setProperty("--guilloche", `url("data:image/svg+xml,${encodeURIComponent(svg)}")`);
+}
+function svgURL(svg) { return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`; }
+function leather() {
+  const fine = `<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="11"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -1.1 .62"/></filter><rect width="100%" height="100%" filter="url(#f)" opacity=".09"/></svg>`;
+  const mottle = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900"><filter id="m"><feTurbulence type="fractalNoise" baseFrequency=".008" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.4 .9"/></filter><rect width="100%" height="100%" filter="url(#m)" opacity=".22"/></svg>`;
+  document.documentElement.style.setProperty("--leather-fine", svgURL(fine));
+  document.documentElement.style.setProperty("--leather-mottle", svgURL(mottle));
+}
+function holoMasks() {
+  const w = 300, h = 150; let lines = "";
+  for (let i = 0; i < 22; i++) {
+    let d = "";
+    for (let x = 0; x <= w; x += 3) { const t = x / w * Math.PI * 2; const y = h / 2 + Math.sin(t * 2 + i * .29) * h * .38 * Math.cos(t * .5 + i * .13); d += (x ? "L" : "M") + x + " " + y.toFixed(1); }
+    lines += `<path d="${d}"/>`;
+  }
+  document.documentElement.style.setProperty("--holo-mask", svgURL(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><g fill="none" stroke="#fff" stroke-width=".9">${lines}</g></svg>`));
+  let p = ""; const R = 30, r = 11, d = 15, turns = r / gcd(R, r);
+  for (let i = 0; i <= 1400; i++) { const t = i / 1400 * Math.PI * 2 * turns; const x = 33 + (R - r) * Math.cos(t) + d * Math.cos((R - r) / r * t) * .78, y = 33 + (R - r) * Math.sin(t) - d * Math.sin((R - r) / r * t) * .78; p += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }
+  document.documentElement.style.setProperty("--ovd-mask", svgURL(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 66"><circle cx="33" cy="33" r="31.5" fill="none" stroke="#fff" stroke-width="1.6"/><path d="${p}" fill="none" stroke="#fff" stroke-width=".7"/><path d="M24 23l9 19 9-19" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/></svg>`));
+}
+const DOTS = { V: ["10001","10001","10001","10001","01010","01010","00100"], S: ["01111","10000","10000","01110","00001","00001","11110"],
+  "0": ["01110","10001","10011","10101","11001","10001","01110"], "1": ["00100","01100","00100","00100","00100","00100","01110"] };
+function perforation(serial) {
+  let c = "", x0 = 0;
+  for (const ch of serial) { (DOTS[ch] || []).forEach((row, y) => [...row].forEach((b, x) => { if (b === "1") c += `<circle cx="${x0 + x * 4 + 2}" cy="${y * 4 + 2}" r="1.05"/>`; })); x0 += 24; }
+  const svg = `<svg viewBox="0 0 ${x0} 28" xmlns="http://www.w3.org/2000/svg" fill="currentColor">${c}</svg>`;
+  document.querySelectorAll(".page.r, .page.wide").forEach((pg) => pg.append(el("span", { class: "perf", "aria-hidden": "true" }, Object.assign(document.createElement("span"), { innerHTML: svg }))));
+}
+function laminate() {
+  const page = $("check"); if (!page) return;
+  let raf = 0, hx = .3, hy = .4;
+  const set = () => { raf = 0; page.style.setProperty("--hx", hx.toFixed(3)); page.style.setProperty("--hy", hy.toFixed(3)); };
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  page.addEventListener("pointermove", (e) => { const r = page.getBoundingClientRect(); hx = (e.clientX - r.left) / r.width; hy = (e.clientY - r.top) / r.height; raf ||= requestAnimationFrame(set); });
+  addEventListener("scroll", () => { const r = page.getBoundingClientRect(); const k = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight + r.height))); hx = .2 + k * .6; hy = .25 + k * .5; raf ||= requestAnimationFrame(set); }, { passive: true });
+}
+function gcd(a, b) { return b ? gcd(b, a % b) : a; }
+function rosette() {
+  const g = [];
+  for (const [R, r, d, ph] of [[200, 37, 76, 0], [170, 23, 60, .3], [140, 31, 52, .9], [104, 13, 40, .5]]) {
+    let p = ""; const turns = r / gcd(R, r), steps = 1600;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps * Math.PI * 2 * turns;
+      const x = (R - r) * Math.cos(t + ph) + d * Math.cos((R - r) / r * t);
+      const y = (R - r) * Math.sin(t + ph) - d * Math.sin((R - r) / r * t);
+      p += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
+    }
+    g.push(`<path d="${p}" fill="none" stroke="currentColor" stroke-width=".55"/>`);
+  }
+  $("crest").innerHTML = g.join("");
+  let p = ""; const R = 30, r = 7, d = 9, turns = r / gcd(R, r);
+  for (let i = 0; i <= 900; i++) { const t = i / 900 * Math.PI * 2 * turns; const x = 60 + (R - r) * Math.cos(t) + d * Math.cos((R - r) / r * t) * .9, y = 60 + (R - r) * Math.sin(t) - d * Math.sin((R - r) / r * t) * .9; p += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }
+  $("sealRose").innerHTML = `<path d="${p}" opacity=".55"/>`;
+}
+function grain() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.4 1.9"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>`;
+  document.documentElement.style.setProperty("--grain", `url("data:image/svg+xml,${encodeURIComponent(svg)}")`);
+}
 
+// ---------------------------------------------------------------- MRZ
+const MRZ_LEN = 44;
+const mrzClean = (s) => s.toUpperCase().replace(/[^A-Z0-9<]/g, "<");
+const pad = (s) => (s + "<".repeat(MRZ_LEN)).slice(0, MRZ_LEN);
+function checkDigit(s) { const w = [7, 3, 1]; let t = 0; [...s].forEach((c, i) => { const v = c === "<" ? 0 : /\d/.test(c) ? +c : c.charCodeAt(0) - 55; t += v * w[i % 3]; }); return String(t % 10); }
+let mrzTimer = null;
+function setMRZ(l1, l2, animate) {
+  const lines = [pad(mrzClean(l1)), pad(mrzClean(l2))], box = $("mrz");
+  clearInterval(mrzTimer);
+  if (!animate || matchMedia("(prefers-reduced-motion: reduce)").matches) { box.textContent = lines.join("\n"); return; }
+  let n = 0;
+  mrzTimer = setInterval(() => {
+    n += 3;
+    box.textContent = lines[0].slice(0, Math.min(n, MRZ_LEN)) + "\n" + (n > MRZ_LEN ? lines[1].slice(0, n - MRZ_LEN) : "");
+    if (n >= MRZ_LEN * 2) clearInterval(mrzTimer);
+  }, 16);
+}
+
+// ---------------------------------------------------------------- Shield
+let events = [], labels = {}, times = {}, lastBlock = CFG.deployedBlock - 1, model = null;
 function parseLog(l) {
   const type = T[l.topics[0].toLowerCase()]; if (!type) return null;
   const w = l.data.slice(2).match(/.{64}/g) || [];
   const base = { type, block: parseInt(l.blockNumber, 16), tx: l.transactionHash, logIndex: parseInt(l.logIndex, 16) };
-  if (type === "report") return { ...base, target: topicAddr(l.topics[1]), identity: topicAddr(l.topics[2]),
-    verdict: VERDICTS[parseInt(w[0], 16)], previous: VERDICTS[parseInt(w[1], 16)], evidence: "0x" + w[2] };
+  if (type === "report") return { ...base, target: topicAddr(l.topics[1]), identity: topicAddr(l.topics[2]), verdict: VERDICTS[parseInt(w[0], 16)], previous: VERDICTS[parseInt(w[1], 16)], evidence: "0x" + w[2] };
   if (type === "response") return { ...base, target: topicAddr(l.topics[1]), responder: topicAddr(l.topics[2]), evidence: "0x" + w[0] };
   return { ...base, identity: topicAddr(l.topics[1]), wallet: topicAddr(l.topics[2]) };
 }
-
+function consensusOf(counts, total) {
+  if (total < 3) return null;
+  const bad = total - counts[1];
+  if (bad * 3 >= total * 2) return "HARMFUL";
+  if (counts[1] * 3 >= total * 2) return "SAFE";
+  return null;
+}
 function build(evts) {
-  const votes = {}, last = {}, responses = {}, links = {}, history = {};
+  const votes = {}, last = {}, responses = {}, links = {}, hist = {};
   for (const e of evts) {
-    if (e.type === "report") {
-      const tv = (votes[e.target] ||= {});
-      if (e.verdict === "NONE") delete tv[e.identity]; else tv[e.identity] = e.verdict;
-      last[e.target] = e;
-      (history[e.target] ||= []).push(e);
-    } else if (e.type === "response") (responses[e.target] ||= []).push(e);
+    if (e.type === "report") { const tv = (votes[e.target] ||= {}); if (e.verdict === "NONE") delete tv[e.identity]; else tv[e.identity] = e.verdict; last[e.target] = e; (hist[e.target] ||= []).push(e); }
+    else if (e.type === "response") (responses[e.target] ||= []).push(e);
     else if (e.type === "linked") links[e.identity] = e.wallet;
     else if (e.type === "unlinked") delete links[e.identity];
   }
@@ -313,37 +665,24 @@ function build(evts) {
   for (const [t, tv] of Object.entries(votes)) {
     const counts = VERDICTS.map(() => 0);
     for (const v of Object.values(tv)) counts[VERDICTS.indexOf(v)]++;
-    const total = counts.reduce((a, b) => a + b, 0), bad = total - counts[1];
-    let consensus = null;
-    if (total >= 3) { if (bad * 3 >= total * 2) consensus = "HARMFUL"; else if (counts[1] * 3 >= total * 2) consensus = "SAFE"; }
-    targets[t] = { addr: t, counts, total, bad, consensus, votes: tv, last: last[t], history: history[t] || [], responses: responses[t] || [] };
+    const total = counts.reduce((a, b) => a + b, 0), consensus = consensusOf(counts, total);
+    targets[t] = { addr: t, counts, total, consensus, votes: tv, last: last[t], history: hist[t] || [], responses: responses[t] || [] };
     for (const [id, v] of Object.entries(tv)) {
-      const r = (reporters[id] ||= { addr: id, votes: 0, agree: 0, disagree: 0 });
-      r.votes++;
+      const r = (reporters[id] ||= { addr: id, votes: 0, agree: 0, disagree: 0 }); r.votes++;
       if (consensus) ((v !== "SAFE") === (consensus === "HARMFUL")) ? r.agree++ : r.disagree++;
     }
   }
-  for (const [t, rs] of Object.entries(responses)) targets[t] ||= { addr: t, counts: VERDICTS.map(() => 0), total: 0, bad: 0, consensus: null, votes: {}, last: null, history: [], responses: rs };
+  for (const [t, rs] of Object.entries(responses)) targets[t] ||= { addr: t, counts: VERDICTS.map(() => 0), total: 0, consensus: null, votes: {}, last: null, history: [], responses: rs };
   for (const r of Object.values(reporters)) r.score = r.agree - r.disagree;
-  const reports = evts.filter((e) => e.type === "report" && e.verdict !== "NONE").length;
-  return { targets, reporters, links: Object.keys(links).length, reports };
+  return { targets, reporters, links: Object.keys(links).length, reports: evts.filter((e) => e.type === "report" && e.verdict !== "NONE").length };
 }
-
-// ---------------------------------------------------------------- render
+function nameOf(a) { const l = labels[a]; return l && (l.name || l.symbol) ? `${l.name || ""}${l.symbol ? " (" + l.symbol + ")" : ""}`.trim() : null; }
 function verdictBar(counts, total) {
-  const bar = el("div", { class: "bar", role: "img", "aria-label": VERDICTS.slice(1).map((v, i) => `${counts[i + 1]} ${v}`).join(", ") });
-  if (!total) return bar;
-  VERDICTS.slice(1).forEach((v, i) => { if (counts[i + 1]) bar.append(el("i", { style: `width:${(100 * counts[i + 1]) / total}%;background:var(${VCOLOR[v]})`, title: `${counts[i + 1]} ${v}` })); });
+  const bar = el("div", { class: "bar-v", role: "img", "aria-label": VERDICTS.slice(1).map((v, i) => `${counts[i + 1]} ${v.toLowerCase()}`).join(", ") });
+  if (total) VERDICTS.slice(1).forEach((v, i) => { if (counts[i + 1]) bar.append(el("i", { style: `width:${(100 * counts[i + 1]) / total}%;background:var(${VCOLOR[v]})` })); });
   return bar;
 }
-function consensusPill(t) {
-  if (t.consensus === "HARMFUL") return el("span", { class: "pill harm" }, "Mostly reported harmful");
-  if (t.consensus === "SAFE") return el("span", { class: "pill safe" }, "Mostly reported safe");
-  return el("span", { class: "pill" }, t.total ? "Not settled yet" : "No reports");
-}
-function tag(v) { return el("span", { class: "tag", style: `background:var(${VCOLOR[v] || "--ink-3"})` }, v === "NONE" ? "RETRACTED" : v); }
-function nameOf(a) { const l = labels[a]; return l && (l.name || l.symbol) ? `${l.name || ""}${l.symbol ? " (" + l.symbol + ")" : ""}`.trim() : null; }
-
+const inkTag = (v) => el("span", { class: "ink", style: `color:var(${VCOLOR[v] || "--ink-3"})` }, v === "NONE" ? "Retracted" : v.toLowerCase());
 function renderStats() {
   $("sReports").textContent = model.reports.toLocaleString();
   $("sIds").textContent = Object.keys(model.reporters).length.toLocaleString();
@@ -352,154 +691,190 @@ function renderStats() {
 }
 function renderTop() {
   const body = $("topBody"); body.replaceChildren();
-  const rows = Object.values(model.targets).filter((t) => t.total).sort((a, b) => b.total - a.total || (b.last?.block || 0) - (a.last?.block || 0)).slice(0, 15);
-  if (!rows.length) { body.append(el("tr", {}, el("td", { colspan: 4, class: "muted" }, "No reports yet. Be the first: see How to report below."))); return; }
+  const rows = Object.values(model.targets).filter((t) => t.total).sort((a, b) => b.total - a.total || (b.last?.block || 0) - (a.last?.block || 0)).slice(0, 12);
+  if (!rows.length) { body.append(el("tr", {}, el("td", { colspan: 3 }, el("div", { class: "empty" }, "No stamps yet. The first report filed by an Agent ID holder appears here within a minute.")))); return; }
   for (const t of rows) {
     const n = nameOf(t.addr);
-    body.append(el("tr", { class: "click", tabindex: "0", onclick: () => show(t.addr), onkeydown: (e) => e.key === "Enter" && show(t.addr) },
-      el("td", {}, el("div", { class: "tname" }, n || (labels[t.addr]?.isContract === false ? "Wallet address" : short(t.addr))), el("div", { class: "tsub" }, short(t.addr))),
-      el("td", {}, verdictBar(t.counts, t.total)),
-      el("td", { class: "num" }, t.total),
-      el("td", { class: "hide-sm" }, consensusPill(t))));
+    body.append(el("tr", { class: "go", tabindex: "0", onclick: () => show(t.addr), onkeydown: (e) => e.key === "Enter" && show(t.addr) },
+      el("td", {}, el("div", { class: "tn" }, n || (labels[t.addr]?.isContract === false ? "Wallet address" : short(t.addr))), el("div", { class: "ts" }, short(t.addr))),
+      el("td", {}, verdictBar(t.counts, t.total)), el("td", { class: "num" }, t.total)));
   }
-}
-function renderLegend() {
-  $("legend").replaceChildren(...VERDICTS.slice(1).map((v) => el("span", {}, el("i", { class: "sw", style: `background:var(${VCOLOR[v]})` }), v.charAt(0) + v.slice(1).toLowerCase())));
 }
 function renderFeed() {
   const ul = $("feed"); ul.replaceChildren();
-  const recent = events.filter((e) => e.type === "report" || e.type === "response").slice(-12).reverse();
-  if (!recent.length) { ul.append(el("li", {}, el("span", { class: "muted", style: "grid-column:1/-1" }, "Nothing yet."))); return; }
-  for (const e of recent) {
+  const recent = events.filter((e) => e.type === "report" || e.type === "response").slice(-6).reverse();
+  if (!recent.length) { ul.append(el("li", {}, el("span", { class: "muted", style: "grid-column:1/-1" }, "Nothing stamped yet."))); return; }
+  recent.forEach((e, i) => {
     const n = nameOf(e.target);
-    const what = el("a", { href: "#", class: "what", onclick: (ev) => { ev.preventDefault(); show(e.target); } }, n || short(e.target));
-    const left = e.type === "response" ? el("span", { class: "tag", style: "background:var(--ink-3)" }, "RESPONSE") : tag(e.verdict);
-    ul.append(el("li", {}, left, what, link(`${CFG.explorer}/tx/${e.tx}`, ago(e.time) || "tx", "when")));
-  }
+    const left = e.type === "response" ? el("span", { class: "ink", style: "color:var(--ink-3)" }, "response") : inkTag(e.verdict);
+    left.style.opacity = String(Math.max(.5, 1 - i * .06)); // newer ink prints darker
+    ul.append(el("li", {}, left, el("a", { href: "#check", class: "t", onclick: (ev) => { ev.preventDefault(); show(e.target); } }, n || short(e.target)), link(`${CFG.explorer}/tx/${e.tx}`, ago(e.time) || "tx", "w")));
+  });
 }
 function renderReporters() {
   const body = $("repBody"); body.replaceChildren();
-  const rows = Object.values(model.reporters).sort((a, b) => b.score - a.score || b.votes - a.votes).slice(0, 12);
+  const rows = Object.values(model.reporters).sort((a, b) => b.score - a.score || b.votes - a.votes).slice(0, 6);
   if (!rows.length) { body.append(el("tr", {}, el("td", { colspan: 3, class: "muted" }, "No reporters yet."))); return; }
   for (const r of rows) body.append(el("tr", {}, el("td", {}, addrLink(r.addr)), el("td", { class: "num" }, r.votes), el("td", { class: "num" }, (r.score > 0 ? "+" : "") + r.score)));
 }
+function renderLegend() { $("legend").replaceChildren(...VERDICTS.slice(1).map((v) => el("span", {}, el("i", { class: "sw", style: `background:var(${VCOLOR[v]})` }), v.charAt(0) + v.slice(1).toLowerCase()))); }
 function renderAll() { model = build(events); renderStats(); renderTop(); renderFeed(); renderReporters(); }
 
-// ---------------------------------------------------------------- lookup
 async function fetchLabel(a) {
   if (labels[a]) return labels[a];
   const info = {};
   try {
-    const code = await rpc("eth_getCode", [a, "latest"]);
-    info.isContract = !!code && code !== "0x";
+    const code = await rpc("eth_getCode", [a, "latest"]); info.isContract = !!code && code !== "0x";
     if (info.isContract) {
-      const [n, s] = await Promise.allSettled([rpc("eth_call", [{ to: a, data: "0x06fdde03" }, "latest"]), rpc("eth_call", [{ to: a, data: "0x95d89b41" }, "latest"])]);
-      info.name = n.status === "fulfilled" ? decodeString(n.value) : null;
-      info.symbol = s.status === "fulfilled" ? decodeString(s.value) : null;
+      const [n, s] = await Promise.allSettled([rpc("eth_call", [{ to: a, data: SEL.name }, "latest"]), rpc("eth_call", [{ to: a, data: SEL.symbol }, "latest"])]);
+      info.name = n.status === "fulfilled" ? decodeString(n.value) : null; info.symbol = s.status === "fulfilled" ? decodeString(s.value) : null;
     }
-  } catch { /* leave unlabeled */ }
+  } catch {}
   return (labels[a] = info);
 }
-
+function stamp(kind, text, sub) {
+  document.querySelector(".slot").classList.add("stamped");
+  $("stampZone").replaceChildren(el("span", { class: `stamp big ${kind} pressed`, style: `--rot:${(-4 - Math.random() * 7).toFixed(1)}deg` }, text, sub ? el("small", {}, sub) : null));
+}
 async function show(addr) {
   addr = addr.toLowerCase();
   $("q").value = addr;
-  const qs = new URLSearchParams(location.search); qs.set("a", addr);
-  history.replaceState(null, "", "?" + qs.toString() + (location.hash || ""));
-  const box = $("result"); $("resultSec").classList.remove("hide");
-  box.replaceChildren(el("div", { class: "muted" }, "Reading the chain…"));
-  $("resultSec").scrollIntoView({ behavior: "smooth", block: "start" });
+  const qs = new URLSearchParams(location.search); qs.set("a", addr); history.replaceState(null, "", "?" + qs.toString());
+  $("check").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  const btn = $("checkBtn"); btn.disabled = true; btn.textContent = "Reading…";
+  $("fStanding").textContent = "Reading the chain…";
+  try {
+    const [info, live, head] = await Promise.all([fetchLabel(addr), rpc("eth_call", [{ to: CFG.contract, data: SEL.riskOf + word(addr) }, "latest"]).catch(() => null), rpc("eth_blockNumber", []).catch(() => null)]);
+    const t = (model && model.targets[addr]) || { addr, counts: VERDICTS.map(() => 0), total: 0, votes: {}, history: [], responses: [] };
+    if (live && live.length >= 2 + 64 * 7) { const w = live.slice(2).match(/.{64}/g).map((x) => parseInt(x, 16)); t.counts = w.slice(0, 6); t.total = w[6]; }
+    t.consensus = consensusOf(t.counts, t.total);
+    const n = nameOf(addr);
+    $("fName").textContent = n ? n + " · unverified" : info.isContract === false ? "Wallet, no contract code" : info.isContract ? "Contract, no name" : "—";
+    $("fVotes").textContent = t.total ? `${t.total} · ` + VERDICTS.slice(1).map((v, i) => t.counts[i + 1] ? `${t.counts[i + 1]} ${v.toLowerCase()}` : null).filter(Boolean).join(", ") : "0";
+    $("fBlock").textContent = head ? parseInt(head, 16).toLocaleString() : "—";
+    let kind, text, sub, standing, code;
+    if (!t.total) { kind = "none"; text = "No record"; sub = "NOT EVIDENCE OF SAFETY"; standing = "No Agent ID has reported it. Read your wallet's preview."; code = "NONE"; }
+    else if (t.consensus === "HARMFUL") { kind = "harm"; text = "Reported harmful"; sub = `${t.total - t.counts[1]} OF ${t.total} AGENT IDS`; standing = "Most holders who checked it report harm."; code = "HARM"; }
+    else if (t.consensus === "SAFE") { kind = "safe"; text = "Reported safe"; sub = `${t.counts[1]} OF ${t.total} AGENT IDS`; standing = "Most holders who checked it found it behaved."; code = "SAFE"; }
+    else { kind = "pend"; text = "Not settled"; sub = `${t.total} VOTE${t.total === 1 ? "" : "S"} SO FAR`; standing = "Too few or split votes to call."; code = "OPEN"; }
+    if (t.responses.length) standing += " The project's owner posted a response.";
+    $("fStanding").textContent = standing;
+    stamp(kind, text, sub);
+    const a = addr.slice(2).toUpperCase();
+    setMRZ(`V<BSC${code}<<${(n || "UNNAMED").replace(/\s+/g, "<")}`, a + String(Math.min(99, t.total)).padStart(2, "0") + checkDigit(a), true);
+  } catch {
+    $("fStanding").textContent = "Couldn't reach the chain. Try again in a moment.";
+  } finally { btn.disabled = false; btn.textContent = "Check"; }
+}
 
-  const [info, live] = await Promise.all([fetchLabel(addr), rpc("eth_call", [{ to: CFG.contract, data: "0x9192724e" + word(addr) }, "latest"]).catch(() => null)]);
-  const t = model.targets[addr] || { addr, counts: VERDICTS.map(() => 0), total: 0, consensus: null, votes: {}, history: [], responses: [] };
-  if (live && live.length >= 2 + 64 * 7) {   // the contract is the source of truth for the counts
-    const w = live.slice(2).match(/.{64}/g).map((x) => parseInt(x, 16));
-    t.counts = w.slice(0, 6); t.total = w[6]; t.bad = t.total - t.counts[1];
-    if (t.total >= 3) t.consensus = t.bad * 3 >= t.total * 2 ? "HARMFUL" : t.counts[1] * 3 >= t.total * 2 ? "SAFE" : null; else t.consensus = null;
+// ---------------------------------------------------------------- Sift
+let siftRows = [];
+async function sift(text) {
+  const found = [...new Set((text.match(/0x[0-9a-fA-F]{40}/g) || []).map((a) => a.toLowerCase()))];
+  const out = $("siftOut"), btn = $("siftBtn"), prog = $("prog");
+  if (!found.length) { out.replaceChildren(el("div", { class: "empty", style: "margin-top:12px" }, "No BNB Chain addresses found. Paste addresses that start with 0x and have 40 hex characters.")); return; }
+  if (found.length > 20000) found.length = 20000;
+  btn.disabled = true; btn.textContent = "Sifting…"; prog.style.width = "0";
+  const ids = new Array(found.length); let done = 0, next = 0;
+  const starts = []; for (let i = 0; i < found.length; i += 200) starts.push(i);
+  try {
+    const worker = async () => {
+      while (next < starts.length) {
+        const start = starts[next++], slice = found.slice(start, start + 200);
+        const body = slice.map((a, j) => ({ jsonrpc: "2.0", id: start + j, method: "eth_call", params: [{ to: CFG.contract, data: SEL.identityOf + word(a) }, "latest"] }));
+        let res;
+        for (let tries = 0; ; tries++) { try { res = await post(body); break; } catch (e) { if (tries > 2) throw e; await new Promise((r) => setTimeout(r, 800 * (tries + 1))); } }
+        for (const r of (Array.isArray(res) ? res : [])) ids[r.id] = r.result ? "0x" + r.result.slice(-40) : null;
+        done += slice.length; prog.style.width = (100 * done / found.length).toFixed(1) + "%";
+      }
+    };
+    await Promise.all([worker(), worker(), worker()]);
+  } catch (e) {
+    out.replaceChildren(el("div", { class: "empty", style: "margin-top:12px" }, `Stopped after ${done.toLocaleString()} addresses: the public RPC refused (${e.message}). Try a smaller list, or again shortly.`));
+    btn.disabled = false; btn.textContent = "Sift the list"; return;
   }
-  const n = nameOf(addr);
-  const kids = [
-    el("div", { class: "head" }, el("div", { class: "title" }, n || (info.isContract === false ? "Wallet address" : info.isContract ? "Contract" : "Address")), link(`${CFG.explorer}/address/${addr}`, addr, "addr")),
-  ];
-  if (n) kids.push(el("div", { class: "note" }, "Name and symbol are read from the contract itself and are not verified."));
-  if (!t.total) {
-    kids.push(el("div", { class: "verdict-line" }, consensusPill(t)));
-    kids.push(el("div", { class: "empty" }, "No Agent ID holder has reported this address. That isn't evidence that it's safe: check your wallet's preview before signing."));
-  } else {
-    kids.push(el("div", { class: "verdict-line" }, consensusPill(t), el("span", { class: "muted small" }, `${t.total} Agent ID vote${t.total === 1 ? "" : "s"}`)));
-    kids.push(el("div", { style: "max-width:520px" }, verdictBar(t.counts, t.total)));
-    kids.push(el("div", { class: "legend", style: "margin-top:8px" }, ...VERDICTS.slice(1).map((v, i) => t.counts[i + 1] ? el("span", {}, el("i", { class: "sw", style: `background:var(${VCOLOR[v]})` }), `${t.counts[i + 1]} ${v.toLowerCase()}`) : null)));
-  }
-  for (const r of t.responses) kids.push(el("div", { class: "resp" }, el("b", {}, "The project responded. "), "Its owner posted counter-evidence ", el("span", { class: "mono" }, r.evidence.slice(0, 18) + "…"), " ", link(`${CFG.explorer}/tx/${r.tx}`, ago(r.time) || "tx")));
-  const votes = Object.entries(t.votes || {});
-  if (votes.length) {
-    const tb = el("tbody");
-    for (const [id, v] of votes) {
-      const ev = [...t.history].reverse().find((e) => e.identity === id && e.verdict === v);
-      tb.append(el("tr", {}, el("td", {}, addrLink(id)), el("td", {}, tag(v)), el("td", { class: "num muted small" }, ev ? link(`${CFG.explorer}/tx/${ev.tx}`, ago(ev.time) || "tx") : "")));
-    }
-    kids.push(el("div", { class: "tablewrap", style: "margin-top:16px" }, el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "Agent ID wallet"), el("th", {}, "Verdict"), el("th", { class: "num" }, "When"))), tb)));
-  }
-  box.replaceChildren(...kids);
+  const firstOf = {}; let backed = 0, dupes = 0, failed = 0, notBacked = 0;
+  siftRows = found.map((a, i) => {
+    const id = ids[i];
+    if (id == null) { failed++; return { a, s: "error" }; }
+    if (/^0x0{40}$/.test(id)) { notBacked++; return { a, s: "no" }; }
+    if (firstOf[id] != null) { dupes++; return { a, s: "dup", of: found[firstOf[id]] }; }
+    firstOf[id] = i; backed++; return { a, s: "yes" };
+  });
+  const tb = el("tbody");
+  for (const r of siftRows.slice(0, 150)) tb.append(el("tr", {},
+    el("td", { class: "mono", style: "font-size:12px" }, short(r.a)),
+    el("td", {}, r.s === "yes" ? el("span", { class: "yes" }, "Backed") : r.s === "dup" ? el("span", { class: "dup" }, "Same holder as " + short(r.of)) : r.s === "no" ? el("span", { class: "no" }, "Not backed") : el("span", { class: "muted" }, "Not read"))));
+  out.replaceChildren(...[
+    el("div", { class: "tally" },
+      el("div", {}, el("b", {}, found.length.toLocaleString()), el("span", {}, "addresses")),
+      el("div", {}, el("b", { class: "yes" }, backed.toLocaleString()), el("span", {}, "backed, unique")),
+      el("div", {}, el("b", { class: "dup" }, dupes.toLocaleString()), el("span", {}, "same holder")),
+      el("div", {}, el("b", { class: "no" }, notBacked.toLocaleString()), el("span", {}, "not backed"))),
+    failed ? el("p", { class: "note" }, `${failed} address(es) couldn't be read; they're marked "unread" in the CSV.`) : null,
+    el("div", { class: "row" }, el("button", { class: "btn ghost", type: "button", onclick: download }, "Download CSV"), el("span", { class: "note" }, siftRows.length > 150 ? `Showing the first 150 of ${siftRows.length.toLocaleString()}.` : "")),
+    el("div", { class: "scroll-x", style: "max-height:300px;overflow:auto;margin-top:10px" }, el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "Address"), el("th", {}, "Result"))), tb))].filter(Boolean));
+  btn.disabled = false; btn.textContent = "Sift the list";
+}
+function download() {
+  const lines = ["address,agent_backed,same_holder_as"];
+  for (const r of siftRows) lines.push(`${r.a},${r.s === "yes" || r.s === "dup" ? "yes" : r.s === "no" ? "no" : "unread"},${r.of || ""}`);
+  const url = URL.createObjectURL(new Blob([lines.join("\n")], { type: "text/csv" }));
+  const a = el("a", { href: url, download: "sift-results.csv" }); document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
 // ---------------------------------------------------------------- load
-function status(text, live) { $("statusText").textContent = text; $("dot").classList.toggle("live", !!live); }
-
+function liveState(text, on) { $("liveText").textContent = text; $("live").classList.toggle("on", !!on); }
 async function catchUp() {
   const head = parseInt(await rpc("eth_blockNumber", []), 16);
-  let from = lastBlock + 1, added = [];
-  const floor = head - SPAN * 4;           // at most four requests from a browser; the indexer covers the rest
-  if (from < floor) from = floor;
+  let from = Math.max(lastBlock + 1, head - SPAN * 4), added = [];
   while (from <= head) {
     const to = Math.min(from + SPAN - 1, head);
     const logs = await rpc("eth_getLogs", [{ address: CFG.contract, fromBlock: "0x" + from.toString(16), toBlock: "0x" + to.toString(16) }]);
-    added.push(...logs.map(parseLog).filter(Boolean));
-    from = to + 1;
+    added.push(...logs.map(parseLog).filter(Boolean)); from = to + 1;
   }
   const seen = new Set(events.map((e) => e.tx + ":" + e.logIndex));
   added = added.filter((e) => !seen.has(e.tx + ":" + e.logIndex)).sort((a, b) => a.block - b.block || a.logIndex - b.logIndex);
   const blocks = [...new Set(added.map((e) => e.block))].filter((b) => !times[b]).slice(-40);
   await Promise.all(blocks.map(async (b) => { try { times[b] = parseInt((await rpc("eth_getBlockByNumber", ["0x" + b.toString(16), false])).timestamp, 16); } catch {} }));
   for (const e of added) e.time = times[e.block];
-  events.push(...added);
-  lastBlock = head;
-  const fresh = [...new Set(added.map((e) => e.target).filter(Boolean))].filter((a) => !labels[a]).slice(0, 20);
-  await Promise.all(fresh.map(fetchLabel));
+  events.push(...added); lastBlock = head;
+  await Promise.all([...new Set(added.map((e) => e.target).filter(Boolean))].filter((a) => !labels[a]).slice(0, 20).map(fetchLabel));
   return added.length;
 }
-
+function leaves() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("motion");
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -12% 0px" });
+  document.querySelectorAll(".leaf").forEach((n) => { if (n.getBoundingClientRect().top > innerHeight * .9) { n.classList.add("pre"); io.observe(n); } });
+}
 async function boot() {
-  $("contractLink").href = $("footContract").href = `${CFG.explorer}/address/${CFG.contract}#code`;
-  renderLegend();
+  guillochePattern(); rosette(); grain(); leather(); holoMasks(); perforation("VS000001"); laminate(); leaves(); renderLegend();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", guillochePattern);
+  $("footContract").href = `${CFG.explorer}/address/${CFG.contract}#code`;
+  setMRZ("V<BSCSHIELD<<CHECK<BEFORE<YOU<SIGN", "ONE<AGENT<ID<ONE<VOICE<<VOUCHSAFE", false);
   try {
     const r = await fetch(CFG.data, { cache: "no-store" });
-    if (r.ok) {
-      const snap = await r.json();
-      if ((snap.contract || "").toLowerCase() === CFG.contract) {
-        events = snap.events || []; labels = snap.labels || {}; times = snap.blockTimes || {}; lastBlock = snap.lastBlock ?? lastBlock;
-        for (const e of events) e.time ??= times[e.block];
-      }
-    }
-  } catch { /* no snapshot: read from the chain */ }
+    if (r.ok) { const s = await r.json(); if ((s.contract || "").toLowerCase() === CFG.contract) { events = s.events || []; labels = s.labels || {}; times = s.blockTimes || {}; lastBlock = s.lastBlock ?? lastBlock; for (const e of events) e.time ??= times[e.block]; } }
+  } catch {}
   renderAll();
-  status("Catching up with the chain…");
+  try { await catchUp(); renderAll(); liveState("live · block " + lastBlock.toLocaleString(), true); }
+  catch { liveState("snapshot · block " + lastBlock.toLocaleString(), false); }
   const q = new URLSearchParams(location.search).get("a");
-  try {
-    await catchUp(); renderAll();
-    status(`Live · BNB Chain block ${lastBlock.toLocaleString()}`, true);
-  } catch (e) {
-    status(`Showing the last snapshot (block ${lastBlock.toLocaleString()}). Live read failed: ${e.message}`);
-  }
-  if (q && /^0x[0-9a-fA-F]{40}$/.test(q)) show(q);
-  setInterval(async () => { try { if (await catchUp()) renderAll(); status(`Live · BNB Chain block ${lastBlock.toLocaleString()}`, true); } catch {} }, 30000);
+  if (q && ADDR_RE.test(q)) show(q);
+  setInterval(async () => { try { if (await catchUp()) renderAll(); liveState("live · block " + lastBlock.toLocaleString(), true); } catch {} }, 30000);
 }
-
 $("search").addEventListener("submit", (e) => {
   e.preventDefault();
   const v = $("q").value.trim();
-  if (!/^0x[0-9a-fA-F]{40}$/.test(v)) { $("resultSec").classList.remove("hide"); $("result").replaceChildren(el("div", { class: "empty" }, "That isn't a BNB Chain address. Paste one that starts with 0x and has 40 hex characters.")); return; }
+  if (!ADDR_RE.test(v)) { $("fStanding").textContent = "That isn't a BNB Chain address: it should start with 0x and have 40 hex characters."; return; }
   show(v);
+});
+$("siftBtn").addEventListener("click", () => sift($("list").value));
+$("file").addEventListener("change", async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  if (f.size > 5e6) { $("siftOut").replaceChildren(el("div", { class: "empty" }, "That file is over 5 MB. Split it and sift each part.")); return; }
+  const t = await f.text(); $("list").value = t.slice(0, 2e6); sift(t);
 });
 boot();
 </script>

@@ -1,0 +1,901 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-20T14:37:32+00:00",
+  "title": "Design System: Vouchsafe",
+  "extensions": {
+    "colorMeta": {
+      "cover-navy": {
+        "role": "secondary",
+        "displayName": "Cover Navy Leather",
+        "canonical": "oklch(25.9% 0.057 261.9)",
+        "tonalRamp": [
+          "#050B18",
+          "#1B2538",
+          "#34425C",
+          "#506282",
+          "#7083A5",
+          "#95A6C4",
+          "#BCCAE3",
+          "#E4EFFF"
+        ]
+      },
+      "cover-deep": {
+        "role": "secondary",
+        "displayName": "Deep Cover",
+        "canonical": "oklch(20.5% 0.040 259.8)",
+        "tonalRamp": [
+          "#060B14",
+          "#1D2533",
+          "#374255",
+          "#546278",
+          "#75839B",
+          "#99A6BB",
+          "#BFCADC",
+          "#E6EFFE"
+        ]
+      },
+      "burgundy": {
+        "role": "primary",
+        "displayName": "Passport Burgundy",
+        "canonical": "oklch(39.3% 0.125 11.0)",
+        "tonalRamp": [
+          "#1E0005",
+          "#440F1B",
+          "#6C2735",
+          "#984050",
+          "#BE6171",
+          "#DC8A96",
+          "#F8B4BC",
+          "#FFDEE4"
+        ]
+      },
+      "burgundy-ink": {
+        "role": "primary",
+        "displayName": "Burgundy Button Ink",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "accent-text": {
+        "role": "primary",
+        "displayName": "Burgundy Link Ink",
+        "canonical": "oklch(39.3% 0.125 11.0)",
+        "tonalRamp": [
+          "#1E0005",
+          "#440F1B",
+          "#6C2735",
+          "#984050",
+          "#BE6171",
+          "#DC8A96",
+          "#F8B4BC",
+          "#FFDEE4"
+        ]
+      },
+      "security-mint": {
+        "role": "neutral",
+        "displayName": "Security Mint Paper",
+        "canonical": "oklch(92.1% 0.014 162.5)",
+        "tonalRamp": [
+          "#070D0A",
+          "#202723",
+          "#3C4440",
+          "#5A645F",
+          "#7B8580",
+          "#9EA8A2",
+          "#C2CCC7",
+          "#E9F1EC"
+        ]
+      },
+      "security-mint-2": {
+        "role": "neutral",
+        "displayName": "Photo Slot Mint",
+        "canonical": "oklch(89.4% 0.018 164.6)",
+        "tonalRamp": [
+          "#070D0A",
+          "#1F2723",
+          "#3A4540",
+          "#58655F",
+          "#798680",
+          "#9BA9A2",
+          "#C1CCC7",
+          "#E8F1EC"
+        ]
+      },
+      "guilloche-teal": {
+        "role": "tertiary",
+        "displayName": "Guilloche Teal",
+        "canonical": "oklch(59.6% 0.078 190.8)",
+        "tonalRamp": [
+          "#00100F",
+          "#002D2B",
+          "#034D4A",
+          "#1C6F6B",
+          "#44918D",
+          "#75B2AE",
+          "#A3D4D1",
+          "#D1F8F5"
+        ]
+      },
+      "guilloche-wash": {
+        "role": "tertiary",
+        "displayName": "Guilloche Wash",
+        "canonical": "rgba(62,142,138,.16)",
+        "tonalRamp": [
+          "#00100F",
+          "#002D2B",
+          "#034D4A",
+          "#1C6F6B",
+          "#44918D",
+          "#75B2AE",
+          "#A3D4D1",
+          "#D1F8F5"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Passport Ink",
+        "canonical": "oklch(24.6% 0.053 261.8)",
+        "tonalRamp": [
+          "#050B17",
+          "#1B2537",
+          "#35425A",
+          "#516280",
+          "#7183A3",
+          "#96A6C2",
+          "#BCCAE2",
+          "#E4EFFF"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Body Ink",
+        "canonical": "oklch(39.5% 0.047 252.4)",
+        "tonalRamp": [
+          "#040C15",
+          "#192635",
+          "#334357",
+          "#4E637B",
+          "#6F859E",
+          "#94A7BE",
+          "#BBCBDE",
+          "#E3F0FF"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Caption Ink",
+        "canonical": "oklch(49.1% 0.040 248.7)",
+        "tonalRamp": [
+          "#050C14",
+          "#1A2632",
+          "#334454",
+          "#4F6478",
+          "#70859A",
+          "#95A7BA",
+          "#BBCBDB",
+          "#E3F0FD"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Printed Rule",
+        "canonical": "rgba(18,32,58,.18)",
+        "tonalRamp": [
+          "#050B17",
+          "#1B2537",
+          "#35425A",
+          "#516280",
+          "#7183A3",
+          "#96A6C2",
+          "#BCCAE2",
+          "#E4EFFF"
+        ]
+      },
+      "gold-foil": {
+        "role": "secondary",
+        "displayName": "Gold Foil",
+        "canonical": "oklch(73.7% 0.115 87.2)",
+        "tonalRamp": [
+          "#150800",
+          "#342100",
+          "#573D00",
+          "#7C5C00",
+          "#9F7D25",
+          "#BEA25F",
+          "#DEC791",
+          "#FFEDC4"
+        ]
+      },
+      "stitch": {
+        "role": "secondary",
+        "displayName": "Gold Stitch",
+        "canonical": "rgba(201,165,76,.55)",
+        "tonalRamp": [
+          "#150800",
+          "#342100",
+          "#573D00",
+          "#7C5C00",
+          "#9F7D25",
+          "#BEA25F",
+          "#DEC791",
+          "#FFEDC4"
+        ]
+      },
+      "cover-text": {
+        "role": "neutral",
+        "displayName": "Cover Text",
+        "canonical": "oklch(86.2% 0.022 250.2)",
+        "tonalRamp": [
+          "#070C11",
+          "#1F262D",
+          "#3A434D",
+          "#58626E",
+          "#798490",
+          "#9BA6B2",
+          "#C1CAD4",
+          "#E8EFF8"
+        ]
+      },
+      "cover-text-soft": {
+        "role": "neutral",
+        "displayName": "Cover Fine Print",
+        "canonical": "oklch(80.1% 0.032 249.7)",
+        "tonalRamp": [
+          "#060C13",
+          "#1C2630",
+          "#374351",
+          "#546373",
+          "#748495",
+          "#98A7B7",
+          "#BECBD8",
+          "#E6F0FB"
+        ]
+      },
+      "cover-link": {
+        "role": "neutral",
+        "displayName": "Cover Link",
+        "canonical": "oklch(93.4% 0.013 251.6)",
+        "tonalRamp": [
+          "#080B0F",
+          "#21262B",
+          "#3D4349",
+          "#5C6269",
+          "#7D838A",
+          "#9FA6AD",
+          "#C4CAD1",
+          "#EAEFF5"
+        ]
+      },
+      "stamp-red": {
+        "role": "tertiary",
+        "displayName": "Harm Stamp Red",
+        "canonical": "oklch(50.1% 0.178 28.7)",
+        "tonalRamp": [
+          "#250000",
+          "#4F0000",
+          "#7C120D",
+          "#AC2A21",
+          "#D45144",
+          "#F08071",
+          "#FFAD9F",
+          "#FFDACE"
+        ]
+      },
+      "stamp-green": {
+        "role": "tertiary",
+        "displayName": "Safe Stamp Green",
+        "canonical": "oklch(51.5% 0.110 156.8)",
+        "tonalRamp": [
+          "#001103",
+          "#002F16",
+          "#044F2E",
+          "#1C7348",
+          "#449568",
+          "#75B68F",
+          "#A3D8B7",
+          "#D2FAE0"
+        ]
+      },
+      "stamp-violet": {
+        "role": "tertiary",
+        "displayName": "Pending Stamp Violet",
+        "canonical": "oklch(44.3% 0.139 295.4)",
+        "tonalRamp": [
+          "#0F0323",
+          "#2A194A",
+          "#483275",
+          "#684EA3",
+          "#8970C8",
+          "#AA97E3",
+          "#CDBEFD",
+          "#F1E6FF"
+        ]
+      },
+      "stamp-blue": {
+        "role": "tertiary",
+        "displayName": "No-Record Stamp Blue",
+        "canonical": "oklch(47.3% 0.139 256.8)",
+        "tonalRamp": [
+          "#000926",
+          "#02234F",
+          "#14417B",
+          "#2960AB",
+          "#4B83D0",
+          "#77A7EA",
+          "#A4CCFF",
+          "#D2F1FF"
+        ]
+      },
+      "stamp-amber": {
+        "role": "tertiary",
+        "displayName": "Honeypot Stamp Amber",
+        "canonical": "oklch(54.3% 0.123 61.8)",
+        "tonalRamp": [
+          "#1B0300",
+          "#3F1900",
+          "#663300",
+          "#8F4F00",
+          "#B4702E",
+          "#D29763",
+          "#EFBE94",
+          "#FFE6C6"
+        ]
+      },
+      "night-cover": {
+        "role": "secondary",
+        "displayName": "Cover Navy Leather (Night)",
+        "canonical": "oklch(18.7% 0.034 260.2)",
+        "tonalRamp": [
+          "#070B13",
+          "#1E2531",
+          "#394252",
+          "#566275",
+          "#778397",
+          "#9AA6B8",
+          "#C0CADA",
+          "#E7EFFC"
+        ],
+        "theme": "dark"
+      },
+      "night-cover-deep": {
+        "role": "secondary",
+        "displayName": "Deep Cover (Night)",
+        "canonical": "oklch(15.4% 0.026 260.2)",
+        "tonalRamp": [
+          "#070B12",
+          "#1F252F",
+          "#3B424F",
+          "#596270",
+          "#798392",
+          "#9DA6B4",
+          "#C2CAD6",
+          "#E8EFF9"
+        ],
+        "theme": "dark"
+      },
+      "night-paper": {
+        "role": "neutral",
+        "displayName": "Security Mint Paper (Night)",
+        "canonical": "oklch(25.2% 0.050 259.4)",
+        "tonalRamp": [
+          "#050B16",
+          "#1B2536",
+          "#344359",
+          "#50627E",
+          "#7183A1",
+          "#96A6C0",
+          "#BCCAE0",
+          "#E4EFFF"
+        ],
+        "theme": "dark"
+      },
+      "night-paper-2": {
+        "role": "neutral",
+        "displayName": "Photo Slot Mint (Night)",
+        "canonical": "oklch(28.4% 0.056 257.3)",
+        "tonalRamp": [
+          "#040B17",
+          "#192637",
+          "#32435B",
+          "#4D6281",
+          "#6D84A4",
+          "#93A7C3",
+          "#BACBE2",
+          "#E2F0FF"
+        ],
+        "theme": "dark"
+      },
+      "night-print": {
+        "role": "tertiary",
+        "displayName": "Guilloche Teal (Night)",
+        "canonical": "oklch(71.2% 0.083 189.4)",
+        "tonalRamp": [
+          "#00100F",
+          "#002D2B",
+          "#004D49",
+          "#14706B",
+          "#40928C",
+          "#72B3AE",
+          "#A1D5D0",
+          "#D0F8F4"
+        ],
+        "theme": "dark"
+      },
+      "night-print-wash": {
+        "role": "tertiary",
+        "displayName": "Guilloche Wash (Night)",
+        "canonical": "rgba(95,179,173,.13)",
+        "tonalRamp": [
+          "#00100F",
+          "#002D2B",
+          "#004D49",
+          "#14706B",
+          "#40928C",
+          "#72B3AE",
+          "#A1D5D0",
+          "#D0F8F4"
+        ],
+        "theme": "dark"
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Passport Ink (Night)",
+        "canonical": "oklch(94.0% 0.013 164.8)",
+        "tonalRamp": [
+          "#080C0A",
+          "#202724",
+          "#3C4440",
+          "#5B645F",
+          "#7C8580",
+          "#9EA8A3",
+          "#C3CCC7",
+          "#E9F1ED"
+        ],
+        "theme": "dark"
+      },
+      "night-ink-2": {
+        "role": "neutral",
+        "displayName": "Body Ink (Night)",
+        "canonical": "oklch(82.9% 0.023 168.6)",
+        "tonalRamp": [
+          "#060D0A",
+          "#1C2823",
+          "#374640",
+          "#55665F",
+          "#758780",
+          "#98AAA2",
+          "#BECDC7",
+          "#E6F2ED"
+        ],
+        "theme": "dark"
+      },
+      "night-ink-3": {
+        "role": "neutral",
+        "displayName": "Caption Ink (Night)",
+        "canonical": "oklch(71.5% 0.027 171.6)",
+        "tonalRamp": [
+          "#050D0A",
+          "#1B2824",
+          "#354640",
+          "#52665F",
+          "#738880",
+          "#96AAA3",
+          "#BDCEC7",
+          "#E4F2ED"
+        ],
+        "theme": "dark"
+      },
+      "night-rule": {
+        "role": "neutral",
+        "displayName": "Printed Rule (Night)",
+        "canonical": "rgba(228,238,233,.16)",
+        "tonalRamp": [
+          "#080C0A",
+          "#202724",
+          "#3C4440",
+          "#5B645F",
+          "#7C8580",
+          "#9EA8A3",
+          "#C3CCC7",
+          "#E9F1ED"
+        ],
+        "theme": "dark"
+      },
+      "night-burgundy": {
+        "role": "primary",
+        "displayName": "Passport Burgundy (Night)",
+        "canonical": "oklch(54.3% 0.149 9.1)",
+        "tonalRamp": [
+          "#210005",
+          "#48071B",
+          "#731E34",
+          "#A03650",
+          "#C75970",
+          "#E48495",
+          "#FFB0BC",
+          "#FFDBE4"
+        ],
+        "theme": "dark"
+      },
+      "night-accent-text": {
+        "role": "primary",
+        "displayName": "Burgundy Link Ink (Night)",
+        "canonical": "oklch(79.0% 0.088 2.9)",
+        "tonalRamp": [
+          "#190309",
+          "#3B1822",
+          "#61313E",
+          "#894C5D",
+          "#AD6C7D",
+          "#CC93A1",
+          "#EBBAC5",
+          "#FFE3EC"
+        ],
+        "theme": "dark"
+      },
+      "night-gold": {
+        "role": "secondary",
+        "displayName": "Gold Foil (Night)",
+        "canonical": "oklch(78.6% 0.114 89.7)",
+        "tonalRamp": [
+          "#140900",
+          "#332200",
+          "#553E00",
+          "#795D00",
+          "#9C7F27",
+          "#BBA360",
+          "#DCC892",
+          "#FDEEC5"
+        ],
+        "theme": "dark"
+      },
+      "night-stitch": {
+        "role": "secondary",
+        "displayName": "Gold Stitch (Night)",
+        "canonical": "rgba(214,182,94,.45)",
+        "tonalRamp": [
+          "#140900",
+          "#332200",
+          "#553E00",
+          "#795D00",
+          "#9C7F27",
+          "#BBA360",
+          "#DCC892",
+          "#FDEEC5"
+        ],
+        "theme": "dark"
+      },
+      "night-stamp-red": {
+        "role": "tertiary",
+        "displayName": "Harm Stamp Red (Night)",
+        "canonical": "oklch(68.2% 0.171 27.1)",
+        "tonalRamp": [
+          "#240000",
+          "#4D0003",
+          "#7A1614",
+          "#AA2D29",
+          "#D2534A",
+          "#EE8176",
+          "#FFAEA3",
+          "#FFDAD1"
+        ],
+        "theme": "dark"
+      },
+      "night-stamp-green": {
+        "role": "tertiary",
+        "displayName": "Safe Stamp Green (Night)",
+        "canonical": "oklch(72.8% 0.131 159.7)",
+        "tonalRamp": [
+          "#001203",
+          "#003016",
+          "#00522D",
+          "#007647",
+          "#289967",
+          "#66B98E",
+          "#99DAB6",
+          "#CBFCE0"
+        ],
+        "theme": "dark"
+      },
+      "night-stamp-violet": {
+        "role": "tertiary",
+        "displayName": "Pending Stamp Violet (Night)",
+        "canonical": "oklch(69.9% 0.133 297.5)",
+        "tonalRamp": [
+          "#0F0322",
+          "#2B1948",
+          "#493372",
+          "#6A4E9F",
+          "#8B70C4",
+          "#AC97DF",
+          "#CFBEFA",
+          "#F3E6FF"
+        ],
+        "theme": "dark"
+      },
+      "night-stamp-blue": {
+        "role": "tertiary",
+        "displayName": "No-Record Stamp Blue (Night)",
+        "canonical": "oklch(70.8% 0.125 258.2)",
+        "tonalRamp": [
+          "#000924",
+          "#08244B",
+          "#1D4176",
+          "#3360A4",
+          "#5483C9",
+          "#7EA7E3",
+          "#A9CBFE",
+          "#D6F1FF"
+        ],
+        "theme": "dark"
+      },
+      "night-stamp-amber": {
+        "role": "tertiary",
+        "displayName": "Honeypot Stamp Amber (Night)",
+        "canonical": "oklch(76.4% 0.139 73.2)",
+        "tonalRamp": [
+          "#1B0400",
+          "#3E1B00",
+          "#643500",
+          "#8D5200",
+          "#B17400",
+          "#CF9A51",
+          "#EDC188",
+          "#FFE8BD"
+        ],
+        "theme": "dark"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Issuing-page wordmark; engraved uppercase Bodoni sized to the page container, key syllable at 700."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Spread titles (Shield, Sift, Errands, Notes); uppercase, key word at 700."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Data-page heads, section subheads, endorsement names, step names; tracked uppercase Bodoni."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Sift tally counts."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Opening paragraph of each page, ink-2, max 34ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running copy, ink-2, max 62ch."
+      },
+      "field-value": {
+        "displayName": "Field Value",
+        "purpose": "Data-page answers under a label."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Every field caption and table header; tracked uppercase, ink-3, numbered on the data page."
+      },
+      "mrz": {
+        "displayName": "Mrz",
+        "purpose": "Two 44-character machine-readable lines at the foot of passport pages."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Addresses, block numbers, the address input, CLI snippets, live status."
+      }
+    },
+    "shadows": [
+      {
+        "name": "paper-on-cover",
+        "value": "0 30px 60px -20px rgba(0,0,0,.55), 0 8px 20px -10px rgba(0,0,0,.4)",
+        "purpose": "Every spread lying on the navy cover."
+      },
+      {
+        "name": "gutter-fold",
+        "value": "linear-gradient(90deg,transparent,rgba(0,0,0,.10) 42%,rgba(0,0,0,.16) 50%,rgba(0,0,0,.10) 58%,transparent)",
+        "purpose": "44px shaded fold at the centre of a two-page spread (background, not box-shadow)."
+      },
+      {
+        "name": "foil-emboss",
+        "value": "drop-shadow(0 1px 0 rgba(255,255,255,.35)) drop-shadow(0 -1px 0 rgba(0,0,0,.18))",
+        "purpose": "Filter on the gold seal only."
+      },
+      {
+        "name": "button-press",
+        "value": "0 6px 14px -8px rgba(0,0,0,.45)",
+        "purpose": "Burgundy action button, slightly proud of the paper."
+      },
+      {
+        "name": "focus-well",
+        "value": "0 0 0 4px color-mix(in srgb,var(--burgundy) 18%,transparent)",
+        "purpose": "Focused text input, with a burgundy border."
+      },
+      {
+        "name": "live-halo",
+        "value": "0 0 0 3px color-mix(in srgb,var(--st-green) 25%,transparent)",
+        "purpose": "The live-connection dot when the chain is reachable."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "House ease (--ease) for leaf turn, stamp press, button press and progress."
+      },
+      {
+        "name": "stamp-press",
+        "value": "press .62s var(--ease) both; 0% opacity 0 scale(1.7) → 55% opacity .95 scale(.94) → 100% scale(1), rotation held",
+        "purpose": "A verdict stamp landing on the data page."
+      },
+      {
+        "name": "leaf-turn",
+        "value": "transform 1s, opacity .9s, filter .9s var(--ease); from opacity .25, perspective(1600px) rotateX(7deg) translateY(30px), blur(1.5px); origin 50% 0",
+        "purpose": "Sections below the fold turning in once on entry."
+      },
+      {
+        "name": "mrz-retype",
+        "value": "3 characters per 16ms tick across two 44-character lines",
+        "purpose": "MRZ rewriting itself from a result."
+      },
+      {
+        "name": "hover",
+        "value": "color .2s; background .15s; filter .2s",
+        "purpose": "Nav link, table row and button hover."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion:reduce): no leaf transform, no press animation, MRZ prints instantly, scroll-behavior auto",
+        "purpose": "Every motion shows its end state immediately."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "900px",
+        "purpose": "Spreads stack one page at a time; data page first on the hero; stitch becomes a top seam."
+      },
+      {
+        "name": "phone",
+        "value": "560px",
+        "purpose": "Photo slot hidden, Check button under input, stamp in flow, two-column ledgers, 12px gutter."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single burgundy action: Check, Sift the list.",
+      "html": "<button class=\"ds-btn\">Check</button>",
+      "css": ":host{--cover:#14233F;--burgundy:#7A1F35;--burgundy-ink:#FFFFFF;--accent-text:#7A1F35;--paper:#DDE8E2;--paper-2:#D2E0D9;--print:#3E8E8A;--print-soft:rgba(62,142,138,.16);--ink:#12203A;--ink-2:#34485F;--ink-3:#4F6377;--rule:rgba(18,32,58,.18);--gold:#C9A54C;--stitch:rgba(201,165,76,.55);--st-red:#B3261E;--st-green:#1F7A4D;--st-violet:#5B3E96;--st-blue:#1E5AA8;--st-amber:#A15C07;--display:'Bodoni Moda',Didot,'Bodoni 72',serif;--sans:'Schibsted Grotesk',ui-sans-serif,system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-btn{font:600 15px/1 var(--sans);letter-spacing:.02em;border:0;border-radius:8px;padding:14px 20px;cursor:pointer;color:var(--burgundy-ink);background:var(--burgundy);box-shadow:0 6px 14px -8px rgba(0,0,0,.45);transition:transform .15s var(--ease),filter .2s}.ds-btn:hover{filter:brightness(1.08)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action in ink on a rule border (Download CSV).",
+      "html": "<button class=\"ds-btn-ghost\">Download CSV</button>",
+      "css": ":host{--cover:#14233F;--burgundy:#7A1F35;--burgundy-ink:#FFFFFF;--accent-text:#7A1F35;--paper:#DDE8E2;--paper-2:#D2E0D9;--print:#3E8E8A;--print-soft:rgba(62,142,138,.16);--ink:#12203A;--ink-2:#34485F;--ink-3:#4F6377;--rule:rgba(18,32,58,.18);--gold:#C9A54C;--stitch:rgba(201,165,76,.55);--st-red:#B3261E;--st-green:#1F7A4D;--st-violet:#5B3E96;--st-blue:#1E5AA8;--st-amber:#A15C07;--display:'Bodoni Moda',Didot,'Bodoni 72',serif;--sans:'Schibsted Grotesk',ui-sans-serif,system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-btn-ghost{font:600 15px/1 var(--sans);letter-spacing:.02em;border:1.5px solid var(--rule);border-radius:8px;padding:14px 20px;cursor:pointer;color:var(--ink);background:transparent;transition:transform .15s var(--ease),border-color .2s}.ds-btn-ghost:hover{border-color:var(--ink-3)}.ds-btn-ghost:active{transform:translateY(1px)}.ds-btn-ghost:focus-visible{outline:2px solid var(--gold);outline-offset:3px}"
+    },
+    {
+      "name": "Address Field",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Numbered data-page field: label, mono input and Check button, with a hint.",
+      "html": "<div class=\"ds-page\"><label class=\"ds-lbl\" for=\"ds-q\">1 · Address to check</label><div class=\"ds-check\"><input class=\"ds-in\" id=\"ds-q\" placeholder=\"0x… contract or wallet\"><button class=\"ds-btn\">Check</button></div><div class=\"ds-hint\">A free read from the chain. Nothing to sign.</div></div>",
+      "css": ":host{--cover:#14233F;--burgundy:#7A1F35;--burgundy-ink:#FFFFFF;--accent-text:#7A1F35;--paper:#DDE8E2;--paper-2:#D2E0D9;--print:#3E8E8A;--print-soft:rgba(62,142,138,.16);--ink:#12203A;--ink-2:#34485F;--ink-3:#4F6377;--rule:rgba(18,32,58,.18);--gold:#C9A54C;--stitch:rgba(201,165,76,.55);--st-red:#B3261E;--st-green:#1F7A4D;--st-violet:#5B3E96;--st-blue:#1E5AA8;--st-amber:#A15C07;--display:'Bodoni Moda',Didot,'Bodoni 72',serif;--sans:'Schibsted Grotesk',ui-sans-serif,system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-page{background:var(--paper);padding:24px;border-radius:14px;color:var(--ink);font-family:var(--sans)}.ds-lbl{display:block;font:600 11.5px/1.25 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}.ds-check{display:flex;gap:8px}.ds-in{flex:1 1 0;min-width:0;font:500 14px/1 var(--mono);color:var(--ink);background:color-mix(in srgb,var(--paper) 55%,#fff 45%);border:1.5px solid var(--rule);border-radius:8px;padding:14px 13px;transition:border-color .2s,box-shadow .2s}.ds-in::placeholder{color:var(--ink-3)}.ds-in:focus{outline:none;border-color:var(--burgundy);box-shadow:0 0 0 4px color-mix(in srgb,var(--burgundy) 18%,transparent)}.ds-btn{font:600 15px/1 var(--sans);border:0;border-radius:8px;padding:14px 20px;color:var(--burgundy-ink);background:var(--burgundy);cursor:pointer;box-shadow:0 6px 14px -8px rgba(0,0,0,.45)}.ds-btn:hover{filter:brightness(1.08)}.ds-hint{font-size:13px;color:var(--ink-3);margin-top:7px}"
+    },
+    {
+      "name": "Cover Bar",
+      "kind": "nav",
+      "refersTo": "cover-bar",
+      "description": "Sticky navy cover bar with gold wordmark and product links.",
+      "html": "<header class=\"ds-bar\"><a class=\"ds-mark\" href=\"#\"><svg viewBox=\"0 0 32 32\" width=\"28\" height=\"28\" aria-hidden=\"true\"><circle cx=\"16\" cy=\"16\" r=\"13\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.4\"/><circle cx=\"16\" cy=\"16\" r=\"10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\".7\" stroke-dasharray=\"1.2 1.6\"/><path d=\"M10.5 10.5l5.5 11.5 5.5-11.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"/></svg>VOUCHSAFE</a><nav class=\"ds-nav\"><a href=\"#\">Shield</a><a href=\"#\">Sift</a><a href=\"#\">Errands</a></nav></header>",
+      "css": ":host{--cover:#14233F;--burgundy:#7A1F35;--burgundy-ink:#FFFFFF;--accent-text:#7A1F35;--paper:#DDE8E2;--paper-2:#D2E0D9;--print:#3E8E8A;--print-soft:rgba(62,142,138,.16);--ink:#12203A;--ink-2:#34485F;--ink-3:#4F6377;--rule:rgba(18,32,58,.18);--gold:#C9A54C;--stitch:rgba(201,165,76,.55);--st-red:#B3261E;--st-green:#1F7A4D;--st-violet:#5B3E96;--st-blue:#1E5AA8;--st-amber:#A15C07;--display:'Bodoni Moda',Didot,'Bodoni 72',serif;--sans:'Schibsted Grotesk',ui-sans-serif,system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-bar{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 20px;background:color-mix(in srgb,var(--cover) 82%,transparent);backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid rgba(201,165,76,.18)}.ds-mark{display:flex;align-items:center;gap:10px;color:var(--gold);text-decoration:none;font:600 15px/1 var(--display);letter-spacing:.28em}.ds-nav{display:flex;gap:26px;font:500 14px/1 var(--sans);color:#C7D3E0}.ds-nav a{color:inherit;text-decoration:none;transition:color .2s}.ds-nav a:hover,.ds-nav a:focus-visible{color:var(--gold)}.ds-nav a:focus-visible,.ds-mark:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}"
+    },
+    {
+      "name": "Verdict Stamps",
+      "kind": "custom",
+      "refersTo": "verdict-stamp",
+      "description": "Rubber-stamp verdicts in stamp ink, double-ruled and rotated; big and round variants.",
+      "html": "<div class=\"ds-paper\"><span class=\"ds-stamp ds-harm\" style=\"--rot:-7deg\">Reported harmful<small>3 OF 4 AGENT IDS</small></span><span class=\"ds-stamp ds-none\" style=\"--rot:-5deg\">No record<small>NOT EVIDENCE OF SAFETY</small></span><span class=\"ds-stamp ds-round ds-safe\" style=\"--rot:9deg\">ONE<small>AGENT ID</small>ONE VOTE</span></div>",
+      "css": ":host{--cover:#14233F;--burgundy:#7A1F35;--burgundy-ink:#FFFFFF;--accent-text:#7A1F35;--paper:#DDE8E2;--paper-2:#D2E0D9;--print:#3E8E8A;--print-soft:rgba(62,142,138,.16);--ink:#12203A;--ink-2:#34485F;--ink-3:#4F6377;--rule:rgba(18,32,58,.18);--gold:#C9A54C;--stitch:rgba(201,165,76,.55);--st-red:#B3261E;--st-green:#1F7A4D;--st-violet:#5B3E96;--st-blue:#1E5AA8;--st-amber:#A15C07;--display:'Bodoni Moda',Didot,'Bodoni 72',serif;--sans:'Schibsted Grotesk',ui-sans-serif,system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-paper{background:var(--paper);padding:28px;border-radius:14px;display:flex;flex-wrap:wrap;gap:28px;align-items:center}.ds-stamp{--c:var(--st-violet);display:inline-grid;place-items:center;gap:2px;text-align:center;color:var(--c);border:3px double var(--c);border-radius:10px;padding:9px 16px 8px;font:700 15px/1.1 var(--sans);letter-spacing:.14em;text-transform:uppercase;transform:rotate(var(--rot,-6deg));opacity:.9;mix-blend-mode:multiply;animation:ds-press .62s var(--ease) both}.ds-stamp small{font:500 10.5px/1.2 var(--mono);letter-spacing:.08em}.ds-harm{--c:var(--st-red)}.ds-safe{--c:var(--st-green)}.ds-none{--c:var(--st-blue)}.ds-round{border-radius:50%;aspect-ratio:1;padding:22px}.ds-stamp:hover{opacity:1}@keyframes ds-press{0%{opacity:0;transform:rotate(var(--rot,-6deg)) scale(1.7)}55%{opacity:.95;transform:rotate(var(--rot,-6deg)) scale(.94)}100%{opacity:.9;transform:rotate(var(--rot,-6deg)) scale(1)}}@media (prefers-reduced-motion:reduce){.ds-stamp{animation:none}}"
+    },
+    {
+      "name": "Data Fields with MRZ",
+      "kind": "card",
+      "refersTo": "passport-page",
+      "description": "A passport page: numbered labelled fields over a two-line machine-readable zone.",
+      "html": "<div class=\"ds-dp\"><div class=\"ds-head\"><span>Shield · Data page</span></div><div class=\"ds-res\"><div><span class=\"ds-lbl\">2 · Name on contract</span><div class=\"ds-val\">Contract, no name</div></div><div><span class=\"ds-lbl\">3 · Agent ID votes</span><div class=\"ds-val\">0</div></div><div class=\"ds-full\"><span class=\"ds-lbl\">4 · Standing</span><div class=\"ds-val\">No Agent ID has reported it. Read your wallet's preview.</div></div></div><div class=\"ds-mrz\">V&lt;BSCSHIELD&lt;&lt;CHECK&lt;BEFORE&lt;YOU&lt;SIGN&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;\nONE&lt;AGENT&lt;ID&lt;ONE&lt;VOICE&lt;&lt;VOUCHSAFE&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div></div>",
+      "css": ":host{--cover:#14233F;--burgundy:#7A1F35;--burgundy-ink:#FFFFFF;--accent-text:#7A1F35;--paper:#DDE8E2;--paper-2:#D2E0D9;--print:#3E8E8A;--print-soft:rgba(62,142,138,.16);--ink:#12203A;--ink-2:#34485F;--ink-3:#4F6377;--rule:rgba(18,32,58,.18);--gold:#C9A54C;--stitch:rgba(201,165,76,.55);--st-red:#B3261E;--st-green:#1F7A4D;--st-violet:#5B3E96;--st-blue:#1E5AA8;--st-amber:#A15C07;--display:'Bodoni Moda',Didot,'Bodoni 72',serif;--sans:'Schibsted Grotesk',ui-sans-serif,system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-dp{background:var(--paper);color:var(--ink);padding:32px;border-radius:14px;font-family:var(--sans)}.ds-head{font:700 15px/1.2 var(--display);letter-spacing:.22em;text-transform:uppercase;margin-bottom:22px}.ds-res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.ds-full{grid-column:1/-1}.ds-lbl{display:block;font:600 11.5px/1.25 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}.ds-val{font:500 17px/1.35 var(--sans)}.ds-mrz{margin-top:26px;padding:14px 0 2px;border-top:1px solid var(--rule);font:500 12px/1.7 var(--mono);letter-spacing:.12em;white-space:pre;overflow:hidden}"
+    },
+    {
+      "name": "Endorsements List",
+      "kind": "custom",
+      "refersTo": "data-field-value",
+      "description": "Products listed as printed endorsements with small status stamps.",
+      "html": "<ul class=\"ds-end\"><li><a class=\"ds-n\" href=\"#\">Shield</a><span class=\"ds-d\">Check a contract before you sign</span><span class=\"ds-s\" style=\"color:var(--st-green)\">LIVE</span></li><li><a class=\"ds-n\" href=\"#\">Errands</a><span class=\"ds-d\">Hire an agent, payment held in escrow</span><span class=\"ds-s\" style=\"color:var(--st-violet)\">IN BUILD</span></li></ul>",
+      "css": ":host{--cover:#14233F;--burgundy:#7A1F35;--burgundy-ink:#FFFFFF;--accent-text:#7A1F35;--paper:#DDE8E2;--paper-2:#D2E0D9;--print:#3E8E8A;--print-soft:rgba(62,142,138,.16);--ink:#12203A;--ink-2:#34485F;--ink-3:#4F6377;--rule:rgba(18,32,58,.18);--gold:#C9A54C;--stitch:rgba(201,165,76,.55);--st-red:#B3261E;--st-green:#1F7A4D;--st-violet:#5B3E96;--st-blue:#1E5AA8;--st-amber:#A15C07;--display:'Bodoni Moda',Didot,'Bodoni 72',serif;--sans:'Schibsted Grotesk',ui-sans-serif,system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-end{list-style:none;margin:0;padding:0 24px;max-width:440px;background:var(--paper);border-top:1px solid var(--rule)}.ds-end li{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--rule)}.ds-n{font:700 18px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:color .2s}.ds-n:hover,.ds-n:focus-visible{color:var(--accent-text)}.ds-d{color:var(--ink-2);font:14.5px/1.5 var(--sans)}.ds-s{font:500 11px/1 var(--mono);letter-spacing:.06em;padding:5px 7px;border-radius:3px;border:1.4px solid currentColor;transform:rotate(-3deg)}"
+    },
+    {
+      "name": "Ink Tag Feed",
+      "kind": "chip",
+      "refersTo": "ink-tag",
+      "description": "Small rotated ink tags naming a verdict in a feed row.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-ink\" style=\"color:var(--st-amber)\">honeypot</span><span class=\"ds-ink\" style=\"color:var(--st-red)\">rug</span><span class=\"ds-ink\" style=\"color:var(--st-green)\">safe</span></div>",
+      "css": ":host{--cover:#14233F;--burgundy:#7A1F35;--burgundy-ink:#FFFFFF;--accent-text:#7A1F35;--paper:#DDE8E2;--paper-2:#D2E0D9;--print:#3E8E8A;--print-soft:rgba(62,142,138,.16);--ink:#12203A;--ink-2:#34485F;--ink-3:#4F6377;--rule:rgba(18,32,58,.18);--gold:#C9A54C;--stitch:rgba(201,165,76,.55);--st-red:#B3261E;--st-green:#1F7A4D;--st-violet:#5B3E96;--st-blue:#1E5AA8;--st-amber:#A15C07;--display:'Bodoni Moda',Didot,'Bodoni 72',serif;--sans:'Schibsted Grotesk',ui-sans-serif,system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-row{display:flex;gap:12px;padding:16px;background:var(--paper)}.ds-ink{font:700 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:4px 7px 3px;border-radius:4px;border:1.5px solid currentColor;white-space:nowrap;display:inline-block;transform:rotate(-2deg)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Passport Page",
+    "overview": "Agent ID is a passport and Vouchsafe is the stamp it earns, so the whole site is one passport held open. The body of the page is the navy cover leather; every section is a spread of security paper laid on top of it, two pages joined at a stitched gutter. Paper carries the information, the cover carries the chrome (sticky bar, footer), and the only things that move are leaves turning in and stamps pressing down.\n\nThe paper is pale mint printed with a generative teal guilloche, drawn in script at load from the live `--print` color so it re-inks itself in the night theme. Burgundy is the document's structural accent and the color of every action. Gold foil belongs to the cover: the wordmark, the seal on the issuing page, the gutter stitching and the focus ring. Verdicts are never typeset in a UI color; they arrive as rubber-stamp ink (double-ruled border, displacement filter, grain mask, multiply blend) in red, green, violet, blue or amber. Engraved Bodoni caps title the documents, Schibsted Grotesk fills the numbered fields, and Martian Mono is held for the machine-readable zone and addresses.\n\nDensity is document-like: generous page padding, hairline rules between field rows, tabular figures, and labels that read as printed form captions. The night theme is the cover leather itself: paper turns navy, the guilloche turns a brighter teal, stamp inks lift for contrast and stop multiplying.",
+    "keyCharacteristics": [
+      "One passport, opened: two-page spreads on a dashed gold stitch and a shaded gutter; full-width single pages for the ledger and the notes.",
+      "Security paper with procedural guilloche and a spirograph crest, never a raster texture.",
+      "Numbered data-page fields (\"1 · Address to check\") with tracked uppercase labels.",
+      "Rubber-stamp verdicts that press in once; a two-line MRZ that retypes from each result.",
+      "Motion limited to two verbs: leaves turn, stamps press. Both stop under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Ink Is the Verdict Rule",
+        "body": "A stamp ink appears only where it states a verdict or status (stamps, ink tags, verdict bars, legend swatches, Sift yes/no/same-holder, the live dot). It never decorates a heading or a button.",
+        "section": "colors"
+      },
+      {
+        "name": "The Foil on the Cover Rule",
+        "body": "Gold sits on the navy cover, on the seal, on the stitch and on focus. It is never body text on paper and never a fill.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Action Color Rule",
+        "body": "Burgundy is the only color a user presses. Ghost buttons are ink on a rule border, not a second hue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Engraved Caps Rule",
+        "body": "Bodoni is set uppercase and tracked when small (0.14em and up) or tight when large (0.02em). It names documents and sections; it never runs as a paragraph.",
+        "section": "typography"
+      },
+      {
+        "name": "The Machine Zone Rule",
+        "body": "Martian Mono is for what a machine would read: MRZ lines, addresses, block numbers, CLI commands, live status. Human prose is never mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Paper Lies Flat Rule",
+        "body": "Nothing printed on a page casts a shadow except the action button, the embossed foil seal and the live dot's ink halo. Hierarchy on paper comes from rules, type and ink.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** lay every new section on paper as a spread or a full-width single page on the navy cover, with the gutter stitch for two-page spreads.",
+      "**Do** caption every value with a tracked uppercase label (11.5px, 0.16em) and number them when they form a reading sequence.",
+      "**Do** state verdicts as stamps or ink tags in the mapped stamp ink, rotated a few degrees, and pair each with a plain-language line.",
+      "**Do** keep burgundy (#7A1F35 light, #B4425D night) as the single action color and gold (#C9A54C) on the cover, seal, stitch and focus ring.",
+      "**Do** draw security texture procedurally from `--print` so it follows the theme.",
+      "**Do** give every motion a reduced-motion state that shows the end result immediately.",
+      "**Do** define both themes for any new token, under `prefers-color-scheme: dark` guarded by `:root:not([data-theme=\"light\"])` and again under `:root[data-theme=\"dark\"]`."
+    ],
+    "donts": [
+      "**Don't** use a stamp ink for decoration, headings or buttons.",
+      "**Don't** set prose, buttons or labels in Martian Mono; it belongs to the machine zone and addresses.",
+      "**Don't** put shadows on anything printed on the page other than the action button, the foil seal emboss and the live dot's halo.",
+      "**Don't** fill a surface with gold or set body text in gold on paper.",
+      "**Don't** add motion beyond the leaf turn, the stamp press and the MRZ retype."
+    ]
+  }
+}
