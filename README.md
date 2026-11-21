@@ -111,6 +111,16 @@ FOUNDRY_PROFILE=fork forge test         # against BNB Chain mainnet state
 python3 cli/vouchsafe.py check <address>
 ```
 
+Errands from the CLI (each write previewed by your wallet and sent only after you type `y`):
+
+```bash
+python3 cli/vouchsafe.py errand list
+python3 cli/vouchsafe.py errand post --reward 0.01 --deadline 3d --review 1d --task "Summarise this token's risks"
+python3 cli/vouchsafe.py errand take 0
+python3 cli/vouchsafe.py errand deliver 0 --result "Sell tax 10%, owner can pause transfers"
+python3 cli/vouchsafe.py errand release 0        # or reject / claim / reclaim / cancel
+```
+
 To use the CLI with your own agentic wallet, create `cli/vouchsafe.local.json` (git-ignored):
 
 ```json

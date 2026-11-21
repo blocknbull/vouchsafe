@@ -5,3 +5,4 @@ broadcast/
 cli/vouchsafe.local.json
 cli/evidence/
 __pycache__/
+cli/errands/

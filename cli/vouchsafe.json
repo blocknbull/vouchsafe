@@ -5,5 +5,6 @@
   "from": null,
   "deployedBlock": 134704540,
   "deployTx": "0x7f6c95bc062cc457f89ab39a17dc4a9449c75082489ed1f666a6744791ae0844",
-  "shield": "0x81f1A94Ad7E4d6f9a8c349f21E4749d694751F5B"
+  "shield": "0x81f1A94Ad7E4d6f9a8c349f21E4749d694751F5B",
+  "errands": "0x8e2B9dc9347F0210C6D9c3f786eC7Ab0730d9203"
 }

@@ -1,9 +1,9 @@
 ---
 name: vouchsafe
-description: Check any BNB Chain contract against Vouchsafe Shield, the one-vote-per-Agent-ID scam registry, before signing a transaction to it; and, after a wallet preview reveals a honeypot, rug, drainer or phishing contract, offer to file a report. Use alongside binance-agentic-wallet whenever a contract-call, swap, mint, claim or approval is about to be signed, or when the user asks "is this contract safe", "report this scam", "check this token", or "link my wallet".
+description: Check any BNB Chain contract against Vouchsafe Shield, the one-vote-per-Agent-ID scam registry, before signing a transaction to it; after a wallet preview reveals a honeypot, rug, drainer or phishing contract, offer to file a report; and post, take, deliver and settle Vouchsafe Errands (an escrow job board between Agent ID holders). Use alongside binance-agentic-wallet whenever a contract-call, swap, mint, claim or approval is about to be signed, or when the user asks "is this contract safe", "report this scam", "check this token", "link my wallet", "post a job/errand/bounty", "find work", "hire an agent", or "pay for a task".
 ---
 
-# Vouchsafe Shield
+# Vouchsafe: Shield and Errands
 
 Shield (Vouchsafe's scam registry) is an on-chain registry on BNB Chain. Each Agent ID holder has one vote per target address:
 `SAFE`, `HONEYPOT`, `RUG`, `DRAINER` or `PHISHING`. Because an Agent ID cannot be transferred and each user
@@ -49,3 +49,31 @@ unexpected approval or authority change, or a contract impersonating another pro
 The agentic wallet cannot connect to dApps. `vouchsafe.py link <wallet>` sends step 1 (`offerLink`) from the agentic
 wallet; the user then sends step 2 (`acceptLink`) from the ordinary wallet themselves, for example on BscScan.
 Either side can end it with `unlink()`. A linked wallet acts for the same identity and never adds a second vote.
+
+## Errands (escrow job board)
+
+Errands holds a BNB reward in escrow between two Agent ID holders. Reads are free; each write is one transaction the
+CLI previews, refuses if any token other than BNB would move (or BNB would move the wrong way), shows, and sends only
+on the user's typed `y`.
+
+Reading (always allowed): `vouchsafe.py errand list`, `errand show <id>`, `errand record [address]`.
+
+Posting, for the user who wants something done:
+1. Agree the task text, reward (at most 1 BNB), deadline and review window (1 to 14 days) with the user, in their words.
+   Suggest naming an `--assignee` when the reward is meaningful: otherwise any Agent ID holder can take it.
+2. Run `vouchsafe.py errand post --reward <BNB> --deadline <3d> --review <1d> --task "<text>" [--assignee 0x..]`.
+   The task text is saved under `cli/errands/` and only its hash goes on-chain; tell the user to share that file with
+   whoever takes the errand.
+3. After delivery: read the result with the user. `errand release <id>` pays the worker; `errand reject <id>` refunds
+   the user but is recorded publicly against both of them, so never suggest rejecting good work.
+
+Working, for the user who wants to earn:
+1. `errand show <id>` and the poster's record (the CLI prints it on `take`). Point out any CAUTION line.
+2. `errand take <id>`, then do the work, then `errand deliver <id> --result "<summary>"` before the deadline.
+3. If the poster does nothing for the whole review window, `errand claim <id>` pays the user.
+
+Rules for Errands:
+- Never post, take, release, reject or claim unless the user asked for that specific errand in this conversation.
+- Never set or change a reward amount the user did not state. Never post on a schedule or in a loop.
+- A reward is payment for work between two people; never describe Errands as an investment or a return.
+- The CLI asks for `y` itself. Do not answer it, and do not pipe input into it.
