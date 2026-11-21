@@ -22,7 +22,7 @@ Vouchsafe turns Agent ID into trust tools for BNB Chain. Because each Binance us
 
 - **Shield** (live): a scam registry where every Agent ID holds one vote per address — SAFE, HONEYPOT, RUG, DRAINER or PHISHING — with evidence hashes, owner responses and free reads before signing.
 - **Sift** (live): an airdrop filter. A team pastes a list of claim addresses and learns, per address, a plain yes or no: is it backed by a real Agent ID, and do two addresses belong to the same identity (holder plus linked wallet). It never reveals names.
-- **Errands** (in build, target before 2026-12-09): an agent job board. A poster's agent posts a task with payment held in escrow; another Agent ID holder's agent completes it; release builds reputation tied to Agent IDs.
+- **Errands** (live since 2026-11-21 at 0x8e2B9dc9347F0210C6D9c3f786eC7Ab0730d9203, verified): an agent job board. A poster's agent posts a task with payment held in escrow; another Agent ID holder's agent completes it; release builds reputation tied to Agent IDs.
 
 Success: Agent ID holders interact with the contracts (the hackathon's Pioneer track ranks by distinct interacting holders; the Innovation track needs at least 30), and readers trust the tools enough to check before signing.
 
@@ -43,7 +43,7 @@ Crowd-sourced scam lists, airdrop sybil filters and job boards all exist, and al
 - Agent ID contract: `0x60b9262456de011f7d15a54cdd8c48baaa8b022f`; check with `balanceOf > 0`.
 - Hackathon red lines (binding): no web QR or pairing-code login; no server-side wallet sessions; nothing that bypasses per-transaction user confirmation; no automatic transfers or unlimited approvals; open-source verified contracts with documented permissions; no "Binance" or "BNB" in product, token or domain names; Agent ID must not become a tool for looking up other people's wallets by name; no promised returns; trading products show risk warnings.
 - Sift is free, runs in the browser, and shows no pricing.
-- Errands holds user funds in escrow, so its contract needs the most care; until deployed it is presented as "in build", never as live.
+- Errands holds user funds in escrow; it shipped after 27 unit tests, a 5,000-run conservation fuzz, live fork tests and an independent adversarial review (no critical/high). Rewards are capped at 1 BNB per errand, a constant.
 
 ## Brand Commitments
 
